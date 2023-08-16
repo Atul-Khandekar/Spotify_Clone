@@ -4,15 +4,63 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/primary_black"
     tools:context=".MainActivity">
 
-    <TextView
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/background_landing_page"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.65"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/background_landing_page"/>
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/landing_page_spotify_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@drawable/ic_spotify_white"
+        app:layout_constraintTop_toTopOf="@id/background_landing_page"
+        app:layout_constraintStart_toStartOf="@id/background_landing_page"
+        app:layout_constraintEnd_toEndOf="@id/background_landing_page"
+        app:layout_constraintBottom_toBottomOf="@id/background_landing_page"
+        app:layout_constraintVertical_bias="0.6"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/txt_million_songs"
+        style="@style/landing_page_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/landing_page_spotify_icon"
+        app:layout_constraintStart_toStartOf="@id/landing_page_spotify_icon"
+        app:layout_constraintEnd_toEndOf="@id/landing_page_spotify_icon"
+        android:text="@string/millions_of_songs"/>
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/txt_free_spotify"
+        style="@style/landing_page_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/txt_million_songs"
+        app:layout_constraintStart_toStartOf="@id/txt_million_songs"
+        app:layout_constraintEnd_toEndOf="@id/txt_million_songs"
+        android:text="@string/free_on_spotify"/>
+    
+    <com.google.android.material.button.MaterialButton
+        style="@style/primary_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/txt_free_spotify"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="45dp"
+        android:layout_marginEnd="45dp"
+        android:layout_marginTop="22dp"
+        android:text="sing up"
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

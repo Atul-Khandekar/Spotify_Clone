@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="landing_page_style">
+
+        <item name="android:textColor">@color/primary_white</item>
+        <item name="android:textSize">@dimen/landing_page_size_28</item>
+        <item name="android:textStyle">bold</item>
+
+    </style>
+
+    <style name="primary_button">
+
+        <item name="backgroundColor">@color/black</item>
+        <item name="cornerRadius">45dp</item>
+
+    </style>
+
+</resources>
