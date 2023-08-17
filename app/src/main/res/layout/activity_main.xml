@@ -49,16 +49,34 @@
         android:text="@string/free_on_spotify"/>
     
     <com.google.android.material.button.MaterialButton
-        style="@style/primary_button"
+        app:cornerRadius="@dimen/button_corner_radius"
+        android:id="@+id/btn_sign_up"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/txt_free_spotify"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="45dp"
-        android:layout_marginEnd="45dp"
-        android:layout_marginTop="22dp"
-        android:text="sing up"
+        android:layout_marginStart="@dimen/margin_start_end_45"
+        android:layout_marginEnd="@dimen/margin_start_end_45"
+        android:layout_marginTop="@dimen/margin_top_22"
+        android:text="Sing up"
+        android:textColor="@color/black"
+        android:textAllCaps="false"
+        android:textSize="@dimen/button_text_size"
+        />
+
+    <Button
+        style="@style/button_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/btn_sign_up"
+        app:layout_constraintStart_toStartOf="@id/btn_sign_up"
+        app:layout_constraintEnd_toEndOf="@id/btn_sign_up"
+        android:layout_marginTop="@dimen/margin_top_12"
+        android:text="@string/continue_with_google"
+
+        />
+
 
 
 

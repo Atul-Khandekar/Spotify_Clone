@@ -1,8 +1,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.SpotifyClone" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.SpotifyClone" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+
+        <item name="colorPrimary">@color/primary_green</item>
+        <item name="android:statusBarColor">@color/black</item>
     </style>
 
     <style name="Theme.SpotifyClone" parent="Base.Theme.SpotifyClone">
