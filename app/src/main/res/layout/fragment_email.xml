@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".EmailFragment"
+    android:background="@color/primary_black">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/txt_email"
+        style="@style/sign_up_titles"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/require_email"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="@dimen/margin_start_32"
+        />
+    <EditText
+        style="@style/sign_up_text_field"
+        android:id="@+id/text_field_email"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/edit_text_height_52"
+        app:layout_constraintTop_toBottomOf="@id/txt_email"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="@dimen/margin_start_32"
+        android:layout_marginEnd="@dimen/margin_start_32"
+        android:layout_marginTop="@dimen/margin_top_4"
+        app:layout_constraintEnd_toEndOf="parent"
+        >
+
+    </EditText>
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/description_email"
+        app:layout_constraintTop_toBottomOf="@id/text_field_email"
+        android:textColor="@color/primary_white"
+        android:textSize="8sp"
+        android:layout_marginStart="@dimen/margin_start_32"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="@dimen/margin_top_4"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

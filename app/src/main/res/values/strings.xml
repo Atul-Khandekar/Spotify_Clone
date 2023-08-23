@@ -2,6 +2,16 @@
     <string name="app_name">SpotifyClone</string>
 
     <string name="millions_of_songs">Millions of Songs.</string>
-    <string name ="free_on_spotify">Free on spotify.</string>
+    <string name="free_on_spotify">Free on spotify.</string>
     <string name="continue_with_google">Continue with google</string>
+    <string name="continue_with_facebook">Continue with facebook</string>
+    <string name="continue_with_apple">Continue with apple</string>
+    <string name="log_in">Log in</string>
+    <string name="create_account">Create account</string>
+    <string name="require_email">What\'s your email?</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="description_email">you\'ll need to confirm this email later </string>
+    <string name="use_atleast_8_char">Use atleast 8 characters. </string>
+    <string name="create_password">Create a password</string>
 </resources>

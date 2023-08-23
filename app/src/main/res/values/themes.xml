@@ -7,6 +7,12 @@
         <item name="android:statusBarColor">@color/black</item>
     </style>
 
+    <style name="Theme.SpotifyClone.ActionBar" parent="Theme.MaterialComponents.DayNight">
+        <item name="colorPrimary">@color/primary_black</item>
+        <item name="android:statusBarColor">@color/primary_black</item>
+        <item name="android:textColor">@color/primary_white</item>
+    </style>
+
     <style name="Theme.SpotifyClone" parent="Base.Theme.SpotifyClone">
         <item name="colorPrimary">@color/primary_green</item>
 

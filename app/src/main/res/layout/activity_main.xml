@@ -12,73 +12,106 @@
         android:id="@+id/background_landing_page"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:background="@drawable/background_landing_page"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.65"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="@drawable/background_landing_page"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/landing_page_spotify_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_spotify_white"
-        app:layout_constraintTop_toTopOf="@id/background_landing_page"
-        app:layout_constraintStart_toStartOf="@id/background_landing_page"
-        app:layout_constraintEnd_toEndOf="@id/background_landing_page"
         app:layout_constraintBottom_toBottomOf="@id/background_landing_page"
-        app:layout_constraintVertical_bias="0.6"/>
+        app:layout_constraintEnd_toEndOf="@id/background_landing_page"
+        app:layout_constraintStart_toStartOf="@id/background_landing_page"
+        app:layout_constraintTop_toTopOf="@id/background_landing_page"
+        app:layout_constraintVertical_bias="0.6" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/txt_million_songs"
         style="@style/landing_page_style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/landing_page_spotify_icon"
-        app:layout_constraintStart_toStartOf="@id/landing_page_spotify_icon"
+        android:text="@string/millions_of_songs"
         app:layout_constraintEnd_toEndOf="@id/landing_page_spotify_icon"
-        android:text="@string/millions_of_songs"/>
+        app:layout_constraintStart_toStartOf="@id/landing_page_spotify_icon"
+        app:layout_constraintTop_toBottomOf="@id/landing_page_spotify_icon" />
+
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/txt_free_spotify"
         style="@style/landing_page_style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/txt_million_songs"
-        app:layout_constraintStart_toStartOf="@id/txt_million_songs"
+        android:text="@string/free_on_spotify"
         app:layout_constraintEnd_toEndOf="@id/txt_million_songs"
-        android:text="@string/free_on_spotify"/>
-    
+        app:layout_constraintStart_toStartOf="@id/txt_million_songs"
+        app:layout_constraintTop_toBottomOf="@id/txt_million_songs" />
+
     <com.google.android.material.button.MaterialButton
-        app:cornerRadius="@dimen/button_corner_radius"
         android:id="@+id/btn_sign_up"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/txt_free_spotify"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginStart="@dimen/margin_start_end_45"
-        android:layout_marginEnd="@dimen/margin_start_end_45"
         android:layout_marginTop="@dimen/margin_top_22"
+        android:layout_marginEnd="@dimen/margin_start_end_45"
         android:text="Sing up"
-        android:textColor="@color/black"
         android:textAllCaps="false"
+        android:textColor="@color/black"
         android:textSize="@dimen/button_text_size"
+        app:cornerRadius="@dimen/button_corner_radius"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txt_free_spotify"
+        android:paddingTop="@dimen/button_padding_top_bottom_13"
+        android:paddingBottom="@dimen/button_padding_top_bottom_13"
         />
 
     <Button
+        android:id="@+id/btn_continue_google"
         style="@style/button_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/btn_sign_up"
-        app:layout_constraintStart_toStartOf="@id/btn_sign_up"
-        app:layout_constraintEnd_toEndOf="@id/btn_sign_up"
-        android:layout_marginTop="@dimen/margin_top_12"
+        android:drawableLeft="@drawable/ic_google"
         android:text="@string/continue_with_google"
+        app:layout_constraintEnd_toEndOf="@id/btn_sign_up"
+        app:layout_constraintStart_toStartOf="@id/btn_sign_up"
+        app:layout_constraintTop_toBottomOf="@id/btn_sign_up" />
 
-        />
+    <Button
+        android:id="@+id/btn_continue_facebook"
+        style="@style/button_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_facebook"
+        android:text="@string/continue_with_facebook"
+        app:layout_constraintEnd_toEndOf="@id/btn_continue_google"
+        app:layout_constraintStart_toStartOf="@id/btn_continue_google"
+        app:layout_constraintTop_toBottomOf="@id/btn_continue_google" />
 
+    <Button
+        android:id="@+id/btn_continue_with_apple"
+        style="@style/button_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_apple"
+        android:text="@string/continue_with_apple"
+        app:layout_constraintEnd_toEndOf="@id/btn_continue_facebook"
+        app:layout_constraintStart_toStartOf="@id/btn_continue_facebook"
+        app:layout_constraintTop_toBottomOf="@id/btn_continue_facebook" />
 
-
-
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/txt_log_in"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/log_in"
+        android:textSize="@dimen/button_text_size"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/btn_continue_with_apple"
+        android:textColor="@color/primary_white"
+        app:layout_constraintStart_toStartOf="@id/btn_continue_with_apple"
+        app:layout_constraintEnd_toEndOf="@id/btn_continue_with_apple"
+        android:padding="@dimen/button_padding_top_bottom_13"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
