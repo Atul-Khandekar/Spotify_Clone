@@ -4,25 +4,25 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".PasswordFragment"
+    tools:context=".GenderFragment"
     android:background="@color/primary_black">
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/txt_password"
+        android:id="@+id/txt_gender"
         style="@style/sign_up_titles"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/create_password"
+        android:text="@string/gender"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="@dimen/margin_start_32"
         />
     <EditText
         style="@style/sign_up_text_field"
-        android:id="@+id/text_field_password"
+        android:id="@+id/text_field_gender"
         android:layout_width="match_parent"
         android:layout_height="@dimen/edit_text_height_52"
-        app:layout_constraintTop_toBottomOf="@id/txt_password"
+        app:layout_constraintTop_toBottomOf="@id/txt_gender"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="@dimen/margin_start_32"
         android:layout_marginEnd="@dimen/margin_start_32"
@@ -31,15 +31,4 @@
         >
 
     </EditText>
-    <com.google.android.material.textview.MaterialTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/use_atleast_8_char"
-        app:layout_constraintTop_toBottomOf="@id/text_field_password"
-        android:textColor="@color/primary_white"
-        android:textSize="8sp"
-        android:layout_marginStart="@dimen/margin_start_32"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="@dimen/margin_top_4"/>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,45 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".PasswordFragment"
-    android:background="@color/primary_black">
+    android:background="@color/primary_black"
+    tools:context=".NameFragment">
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/txt_password"
+        android:id="@+id/txt_name"
         style="@style/sign_up_titles"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/create_password"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="@dimen/margin_start_32"
-        />
+        android:text="@string/name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <EditText
+        android:id="@+id/text_field_name"
         style="@style/sign_up_text_field"
-        android:id="@+id/text_field_password"
         android:layout_width="match_parent"
         android:layout_height="@dimen/edit_text_height_52"
-        app:layout_constraintTop_toBottomOf="@id/txt_password"
-        app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="@dimen/margin_start_32"
-        android:layout_marginEnd="@dimen/margin_start_32"
         android:layout_marginTop="@dimen/margin_top_4"
+        android:layout_marginEnd="@dimen/margin_start_32"
         app:layout_constraintEnd_toEndOf="parent"
-        >
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txt_name">
 
     </EditText>
+
     <com.google.android.material.textview.MaterialTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/use_atleast_8_char"
-        app:layout_constraintTop_toBottomOf="@id/text_field_password"
+        android:layout_marginStart="@dimen/margin_start_32"
+        android:layout_marginTop="@dimen/margin_top_4"
+        android:text="@string/description_name"
         android:textColor="@color/primary_white"
         android:textSize="8sp"
-        android:layout_marginStart="@dimen/margin_start_32"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="@dimen/margin_top_4"/>
+        app:layout_constraintTop_toBottomOf="@id/text_field_name" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
