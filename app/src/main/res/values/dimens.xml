@@ -22,4 +22,7 @@
     <dimen name="button_next_top_44">44dp</dimen>
     <dimen name="button_next_corner_21">21dp</dimen>
 
+
+    <dimen name="section_font_size_24">24sp</dimen>
+
 </resources>

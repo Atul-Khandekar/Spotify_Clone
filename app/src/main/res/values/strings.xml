@@ -17,9 +17,12 @@
     <string name="gender">What’s your gender?</string>
     <string name="name">What’s your name?</string>
     <string name="description_name">This appears on your spotify profile</string>
+    <string name="section_placeholder">Section Placeholder</string>
+    <string name="dummy_album">Ed Sheeran, Big Sean, Juice WRLD, Post Malone</string>
 
     //nav icon titles
     <string name="home">Home</string>
     <string name="search">Search</string>
     <string name="your_library">Your Library</string>
+
 </resources>
