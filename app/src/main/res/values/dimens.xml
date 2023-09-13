@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <dimen name="margin_start_end_45">45dp</dimen>
     <dimen name="margin_top_22">22dp</dimen>
@@ -18,11 +18,17 @@
     <dimen name="description_text_size">8sp</dimen>
     <dimen name="text_field_start_12">12dp</dimen>
     <dimen name="text_field_corners">5dp</dimen>
+    <dimen name="margin_start_end_10">10dp</dimen>
+    <dimen name="button_padding_4">4dp</dimen>
+    <dimen name="margin_top_bottom_16">16dp</dimen>
+    <dimen name="divider_height">1dp</dimen>
 
     <dimen name="button_next_top_44">44dp</dimen>
     <dimen name="button_next_corner_21">21dp</dimen>
 
-
     <dimen name="section_font_size_24">24sp</dimen>
+    <dimen name="button_text_size_32">32sp</dimen>
+    <dimen name="text_size_11">11sp</dimen>
+    <dimen name="profile_name_text_size_24">24sp</dimen>
 
 </resources>

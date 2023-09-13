@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/primary_grey">
+    <androidx.appcompat.widget.AppCompatButton
+
+        android:id="@+id/profile_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintDimensionRatio="@string/profile_button_ratio"
+        android:background="@drawable/shape_profile_button"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="@dimen/margin_top_bottom_16"
+        android:layout_marginBottom="@dimen/margin_top_bottom_16"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginStart="@dimen/margin_start_32"
+        android:text="@string/a"
+        android:textStyle="bold"
+        android:textSize="@dimen/button_text_size_32"
+        android:padding="@dimen/button_padding_4"
+        />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/profile_name"
+        android:textColor="@color/primary_white"
+        app:layout_constraintStart_toEndOf="@id/profile_button"
+        app:layout_constraintTop_toTopOf="@id/profile_button"
+        app:layout_constraintBottom_toBottomOf="@id/profile_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="@dimen/margin_start_32"
+        android:layout_marginStart="@dimen/margin_start_32"
+        android:textSize="@dimen/profile_name_text_size_24"
+        android:textStyle="bold"
+
+        app:layout_constraintVertical_bias="0.2"/>
+
+    <com.google.android.material.divider.MaterialDivider
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/divider_height"
+        app:dividerColor="@color/primary_light_grey"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

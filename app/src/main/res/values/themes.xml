@@ -2,15 +2,11 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.SpotifyClone" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-
-        <item name="colorPrimary">@color/primary_green</item>
-        <item name="android:statusBarColor">@color/black</item>
     </style>
 
-    <style name="Theme.SpotifyClone.ActionBar" parent="Theme.MaterialComponents.DayNight">
+    <style name="Theme.SpotifyClone.NoActionBar" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorPrimary">@color/primary_black</item>
-        <item name="android:statusBarColor">@color/primary_black</item>
-        <item name="android:textColor">@color/primary_white</item>
+        <item name="colorAccent">@color/primary_white</item>
     </style>
 
     <style name="Theme.SpotifyClone" parent="Base.Theme.SpotifyClone">

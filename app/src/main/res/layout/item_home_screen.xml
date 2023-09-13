@@ -2,6 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/margin_start_end_45"
+    android:layout_marginBottom="@dimen/margin_start_end_45"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/black">
@@ -22,10 +24,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/section_placeholder"
+        android:layout_marginTop="@dimen/margin_start_end_10"
         app:layout_constraintStart_toStartOf="parent"
         android:orientation="horizontal"
         tools:listitem="@layout/item_horizontal_recycler_view"
-        tools:itemCount="4"
+        tools:itemCount="2"
         />
 
 

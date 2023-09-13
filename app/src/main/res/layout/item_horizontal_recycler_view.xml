@@ -2,6 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/margin_start_end_10"
+    android:layout_marginEnd="@dimen/margin_start_end_10"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <com.google.android.material.imageview.ShapeableImageView
@@ -18,8 +20,9 @@
         android:id="@+id/text_artists"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:textSize="@dimen/text_size_11"
         android:text="@string/dummy_album"
-        android:textColor="@color/white"
+        android:textColor="@color/primary_light_grey"
         app:layout_constraintTop_toBottomOf="@id/cover_image"
         app:layout_constraintStart_toStartOf="@id/cover_image"
         app:layout_constraintEnd_toEndOf="@+id/cover_image"
