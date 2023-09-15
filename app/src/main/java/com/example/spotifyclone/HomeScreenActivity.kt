@@ -2,6 +2,7 @@ package com.example.spotifyclone
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toolbar
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
@@ -22,10 +23,12 @@ class HomeScreenActivity : AppCompatActivity() {
         val bottomNavigationView  = binding.bottomNavigation
         bottomNavigationView.setupWithNavController(navController)
 
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(false)
+        supportActionBar?.setIcon(R.drawable.ic_home)
 
-        val toggle = ActionBarDrawerToggle(this, binding.drawerLayout , binding.actionBarHomeActivity, R.string.navigation_drawer_open , R.string.navigation_drawer_close)
-        binding.drawerLayout.addDrawerListener(toggle)
-        toggle.syncState()
+
+//        val toggle = ActionBarDrawerToggle(this, binding.drawerLayout , binding.actionBarHomeActivity, R.string.navigation_drawer_open , R.string.navigation_drawer_close)
+//        binding.drawerLayout.addDrawerListener(toggle)
+//        toggle.syncState()
     }
 }
