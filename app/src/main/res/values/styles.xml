@@ -60,4 +60,10 @@
         <item name="android:textSize">18dp</item>
     </style>
 
+    <style name="navigation_top_title">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">@dimen/navigation_title_text_size_28</item>
+        <item name="fontWeight">700</item>
+    </style>
+
 </resources>
