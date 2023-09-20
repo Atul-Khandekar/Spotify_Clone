@@ -22,6 +22,8 @@
     <dimen name="button_padding_4">4dp</dimen>
     <dimen name="margin_top_bottom_16">16dp</dimen>
     <dimen name="divider_height">1dp</dimen>
+    <dimen name="search_field_8">8dp</dimen>
+    <dimen name="search_field_padding_12">12dp</dimen>
 
     <dimen name="button_next_top_44">44dp</dimen>
     <dimen name="button_next_corner_21">21dp</dimen>
@@ -31,5 +33,6 @@
     <dimen name="text_size_11">11sp</dimen>
     <dimen name="profile_name_text_size_24">24sp</dimen>
     <dimen name="navigation_title_text_size_28">28sp</dimen>
+    <dimen name="search_field_text_size_16">16sp</dimen>
 
 </resources>

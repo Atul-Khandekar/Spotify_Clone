@@ -25,6 +25,7 @@
     <string name="home">Home</string>
     <string name="search">Search</string>
     <string name="your_library">Your Library</string>
+    <string name="camera">Camera</string>
 
     <string name="whats_new">What\'s new </string>
     <string name="recent_played">Recently played</string>
@@ -34,4 +35,6 @@
     <string name="a">A</string>
     <string name="navigation_drawer_open">open</string>
     <string name="navigation_drawer_close">close</string>
+
+    <string name="search_field_hint">Artists, songs, or podcasts</string>
 </resources>
