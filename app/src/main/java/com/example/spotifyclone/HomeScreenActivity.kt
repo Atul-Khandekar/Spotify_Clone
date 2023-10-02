@@ -23,12 +23,5 @@ class HomeScreenActivity : AppCompatActivity() {
         val bottomNavigationView  = binding.bottomNavigation
         bottomNavigationView.setupWithNavController(navController)
 
-        supportActionBar?.setDisplayHomeAsUpEnabled(false)
-        supportActionBar?.setIcon(R.drawable.ic_home)
-
-
-//        val toggle = ActionBarDrawerToggle(this, binding.drawerLayout , binding.actionBarHomeActivity, R.string.navigation_drawer_open , R.string.navigation_drawer_close)
-//        binding.drawerLayout.addDrawerListener(toggle)
-//        toggle.syncState()
     }
 }

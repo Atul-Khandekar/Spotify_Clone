@@ -37,4 +37,9 @@
     <string name="navigation_drawer_close">close</string>
 
     <string name="search_field_hint">Artists, songs, or podcasts</string>
+    <string name="playlists">Playlists</string>
+    <string name="artists">Artists</string>
+    <string name="category_title">Category Title</string>
+    <string name="search_library_title">Search Library</string>
+    <string name="add_library_title">Add Library</string>
 </resources>

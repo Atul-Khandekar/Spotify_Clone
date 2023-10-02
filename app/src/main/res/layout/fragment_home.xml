@@ -12,19 +12,37 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".HomeFragment"
         android:background="@color/black"
-        >
+        tools:context=".HomeFragment">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/action_bar_home_activity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:title="@string/home"
             app:menu="@menu/main_menu"
+            app:titleTextColor="@color/primary_white">
 
-            app:titleTextColor="@color/primary_white" />
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="start"
+                android:layout_marginEnd="@dimen/margin_end_24"
+                android:background="@drawable/round_button"
+                android:text="@string/a"
+
+                />
+
+            <com.google.android.material.textview.MaterialTextView
+                style="@style/navigation_top_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/home"
+                />
+
+        </com.google.android.material.appbar.MaterialToolbar>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/parent_recycler_view"

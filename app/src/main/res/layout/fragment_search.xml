@@ -19,31 +19,34 @@
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
             app:layout_scrollFlags="scroll|enterAlways|snap"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
             app:title="@string/search"
             app:titleTextColor="@color/primary_white"
             app:titleTextAppearance="@style/navigation_top_title"
             app:menu="@menu/search_menu"
+            app:titleMarginStart="0dp"
             />
 
-        <android.support.design.widget.TextInputEditText
+        <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/shape_search_field"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="10dp"
             android:hint="Artists, songs, or podcasts"
             android:textSize="@dimen/search_field_text_size_16"
             android:padding="@dimen/search_field_padding_12"
+            android:inputType="text"
             android:drawableStart="@drawable/ic_search_black"
             android:drawablePadding="@dimen/search_field_padding_12"/>
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/search_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

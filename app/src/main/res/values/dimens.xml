@@ -27,6 +27,8 @@
 
     <dimen name="button_next_top_44">44dp</dimen>
     <dimen name="button_next_corner_21">21dp</dimen>
+    <dimen name="margin_end_24">24dp</dimen>
+    <dimen name="margin_14">14dp</dimen>
 
     <dimen name="section_font_size_24">24sp</dimen>
     <dimen name="button_text_size_32">32sp</dimen>
@@ -34,5 +36,7 @@
     <dimen name="profile_name_text_size_24">24sp</dimen>
     <dimen name="navigation_title_text_size_28">28sp</dimen>
     <dimen name="search_field_text_size_16">16sp</dimen>
+
+
 
 </resources>

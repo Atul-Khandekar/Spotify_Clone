@@ -43,26 +43,37 @@ class HomeFragment : Fragment() {
             this.adapter = adapter
         }
 
-        val toggle = ActionBarDrawerToggle(
-            activity,
-            binding.drawerLayout,
-            binding.actionBarHomeActivity,
-            R.string.navigation_drawer_open,
-            R.string.navigation_drawer_close
-        )
-        binding.drawerLayout.addDrawerListener(toggle)
-        toggle.syncState()
-        toggle.isDrawerIndicatorEnabled = false
-        val drawable = ResourcesCompat.getDrawable(resources , R.drawable.ic_menu , activity?.theme)
-        toggle.setHomeAsUpIndicator(drawable)
+//        val toggle = ActionBarDrawerToggle(
+//            activity,
+//            binding.drawerLayout,
+//            binding.actionBarHomeActivity,
+//            R.string.navigation_drawer_open,
+//            R.string.navigation_drawer_close
+//        )
+//        binding.drawerLayout.addDrawerListener(toggle)
+//        toggle.syncState()
+//        toggle.isDrawerIndicatorEnabled = false
+//        val drawable = ResourcesCompat.getDrawable(resources , R.drawable.ic_menu , activity?.theme)
+//        toggle.setHomeAsUpIndicator(drawable)
+//
+//        toggle.toolbarNavigationClickListener = View.OnClickListener {
+//            if (binding.drawerLayout.isDrawerVisible(GravityCompat.START)) {
+//                binding.drawerLayout.closeDrawer(GravityCompat.START)
+//            } else {
+//                binding.drawerLayout.openDrawer(GravityCompat.START)
+//            }
+//        }
 
-        toggle.toolbarNavigationClickListener = View.OnClickListener {
-            if (binding.drawerLayout.isDrawerVisible(GravityCompat.START)) {
-                binding.drawerLayout.closeDrawer(GravityCompat.START)
-            } else {
-                binding.drawerLayout.openDrawer(GravityCompat.START)
+        binding.apply {
+            navigationView.apply {
+                bringToFront()
             }
+            actionBarHomeActivity.apply {
+
+            }
+
         }
+
 
     }
 

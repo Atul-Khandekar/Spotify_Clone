@@ -7,7 +7,12 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.spotifyclone.customadapters.SearchCategoryAdapter
 import com.example.spotifyclone.databinding.FragmentSearchBinding
+import com.example.spotifyclone.models.SearchCategoryModel
+import java.util.UUID
 
 class SearchFragment : Fragment() {
 
@@ -27,6 +32,21 @@ class SearchFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val searchAdapter = SearchCategoryAdapter()
+        searchAdapter.submitList(  listOf(
+            SearchCategoryModel(UUID.randomUUID() , "POP" , "noimage") ,
+            SearchCategoryModel(UUID.randomUUID() , "POP" , "noimage"),
+            SearchCategoryModel(UUID.randomUUID() , "POP" , "noimage"),
+            SearchCategoryModel(UUID.randomUUID() , "POP" , "noimage"),
+            SearchCategoryModel(UUID.randomUUID() , "POP" , "noimage"),
+            SearchCategoryModel(UUID.randomUUID() , "POP" , "noimage"),
+            SearchCategoryModel(UUID.randomUUID() , "POP" , "noimage"),
+            SearchCategoryModel(UUID.randomUUID() , "POP" , "noimage"),
+            ))
+        binding.searchRecyclerView.adapter = searchAdapter
+        binding.searchRecyclerView.setHasFixedSize(true)
+        binding.searchRecyclerView.layoutManager = GridLayoutManager(binding.root.context , 2)
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
