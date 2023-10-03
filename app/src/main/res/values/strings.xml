@@ -35,6 +35,9 @@
     <string name="a">A</string>
     <string name="navigation_drawer_open">open</string>
     <string name="navigation_drawer_close">close</string>
+    <string name="playlist_name">Playlist Name</string>
+    <string name="playlist">Playlist</string>
+    <string name="songs_count">Songs Count</string>
 
     <string name="search_field_hint">Artists, songs, or podcasts</string>
     <string name="playlists">Playlists</string>

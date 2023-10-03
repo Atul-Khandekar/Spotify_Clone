@@ -24,6 +24,7 @@
             app:titleTextAppearance="@style/navigation_top_title"
             app:menu="@menu/search_menu"
             app:titleMarginStart="0dp"
+            android:layout_marginTop="@dimen/margin_26"
             />
 
         <EditText
