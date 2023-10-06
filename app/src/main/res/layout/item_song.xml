@@ -8,7 +8,7 @@
     android:paddingBottom="@dimen/padding_8">
 
     <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/playlist_image_view"
+        android:id="@+id/song_image_view"
         android:layout_width="@dimen/height_67dp"
         android:layout_height="0dp"
         android:src="@drawable/ic_playlist_background"
@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/playlist_name"
+        android:id="@+id/song_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_14"
@@ -27,19 +27,9 @@
         android:textSize="@dimen/search_field_text_size_16"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@id/playlist"
-        app:layout_constraintStart_toEndOf="@id/playlist_image_view"
-        app:layout_constraintTop_toTopOf="@id/playlist_image_view"
+        app:layout_constraintStart_toEndOf="@id/song_image_view"
+        app:layout_constraintTop_toTopOf="@id/song_image_view"
         app:layout_constraintVertical_bias="0.2" />
-
-    <com.google.android.material.imageview.ShapeableImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_dot"
-        app:layout_constraintStart_toEndOf="@id/playlist"
-        app:layout_constraintTop_toTopOf="@id/playlist"
-        app:layout_constraintBottom_toBottomOf="@id/playlist"
-        app:layout_constraintEnd_toStartOf="@id/songs_count"
-        />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/playlist"
@@ -48,21 +38,31 @@
         android:text="@string/playlist"
         android:textColor="@color/primary_light_grey"
         android:textSize="@dimen/text_size_13"
-        app:layout_constraintBottom_toBottomOf="@id/playlist_image_view"
-        app:layout_constraintStart_toStartOf="@id/playlist_name"
-        app:layout_constraintTop_toBottomOf="@id/playlist_name" />
+        app:layout_constraintBottom_toBottomOf="@id/song_image_view"
+        app:layout_constraintStart_toStartOf="@id/song_name"
+        app:layout_constraintTop_toBottomOf="@id/song_name" />
+
+    <androidx.constraintlayout.utils.widget.ImageFilterView
+        android:id="@+id/bullet_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_dot"
+        app:layout_constraintBottom_toBottomOf="@id/playlist"
+        app:layout_constraintEnd_toStartOf="@id/artists_name"
+        app:layout_constraintStart_toEndOf="@id/playlist"
+        app:layout_constraintTop_toTopOf="@id/playlist"
+        />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/songs_count"
+        android:id="@+id/artists_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_14"
-        android:text="@string/songs_count"
+        android:text="@string/artists"
         android:textColor="@color/primary_light_grey"
         android:textSize="@dimen/text_size_13"
         app:layout_constraintBottom_toBottomOf="@id/playlist"
         app:layout_constraintStart_toEndOf="@id/playlist"
         app:layout_constraintTop_toTopOf="@id/playlist" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,14 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SearchSongFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".SearchSongFragment"
+    android:background="@color/black"
+    >
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <EditText
+        android:id="@+id/search_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@color/primary_grey"
+        android:hint="@string/search_song_hint"
+        android:drawableStart="@drawable/ic_navigate_back"
+        android:drawablePadding="@dimen/padding_18"
+        android:padding="@dimen/padding_18"
+        android:textColorHint="@color/primary_light_grey"
+        android:textStyle="bold|normal"/>
 
-</FrameLayout>
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/search_song_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/search_song_description"
+        android:textColor="@color/white"
+        android:textSize="@dimen/profile_name_text_size_24"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textStyle="bold"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/search_song_description_subtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/search_song_description"
+        android:text="@string/search_song_description_subtitle"
+        android:textColor="@color/primary_light_grey"
+        app:layout_constraintStart_toStartOf="@id/search_song_description"
+        app:layout_constraintEnd_toEndOf="@id/search_song_description"
+        android:layout_marginTop="@dimen/margin_14"
+        android:textStyle="bold"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/search_song_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/search_view"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:listitem="@layout/item_song"
+        tools:itemCount="7"
+        android:background="@color/black"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

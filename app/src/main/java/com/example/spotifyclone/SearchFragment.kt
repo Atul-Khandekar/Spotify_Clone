@@ -7,6 +7,7 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.commit
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.spotifyclone.customadapters.SearchCategoryAdapter
@@ -46,6 +47,13 @@ class SearchFragment : Fragment() {
         binding.searchRecyclerView.adapter = searchAdapter
         binding.searchRecyclerView.setHasFixedSize(true)
         binding.searchRecyclerView.layoutManager = GridLayoutManager(binding.root.context , 2)
+        binding.searchField.setOnClickListener {
+
+          val activity = activity as HomeScreenActivity
+            activity.supportFragmentManager.commit {
+                add(R.id.nav_host_fragment , SearchSongFragment())
+            }
+        }
 
     }
 

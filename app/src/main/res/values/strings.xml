@@ -38,6 +38,10 @@
     <string name="playlist_name">Playlist Name</string>
     <string name="playlist">Playlist</string>
     <string name="songs_count">Songs Count</string>
+    <string name="search_song_hint">What do you want to listen ?</string>
+    <string name="search_song_description">Play what you love </string>
+    <string name="search_song_description_subtitle">Search for artists, songs, podcasts , and  more.</string>
+    <string name="sign_up">Sign up </string>
 
     <string name="search_field_hint">Artists, songs, or podcasts</string>
     <string name="playlists">Playlists</string>

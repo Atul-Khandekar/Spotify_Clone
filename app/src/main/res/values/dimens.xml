@@ -24,6 +24,7 @@
     <dimen name="divider_height">1dp</dimen>
     <dimen name="search_field_8">8dp</dimen>
     <dimen name="search_field_padding_12">12dp</dimen>
+    <dimen name="padding_18">18dp</dimen>
 
     <dimen name="button_next_top_44">44dp</dimen>
     <dimen name="button_next_corner_21">21dp</dimen>

@@ -7,7 +7,6 @@
     android:background="@color/primary_black"
     tools:context=".MainActivity">
 
-
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/background_landing_page"
         android:layout_width="match_parent"
@@ -56,11 +55,12 @@
         android:layout_marginStart="@dimen/margin_start_end_45"
         android:layout_marginTop="@dimen/margin_top_22"
         android:layout_marginEnd="@dimen/margin_start_end_45"
-        android:text="Sing up"
+        android:text="@string/sign_up"
         android:textAllCaps="false"
         android:textColor="@color/black"
         android:textSize="@dimen/button_text_size"
         app:cornerRadius="@dimen/button_corner_radius"
+        android:backgroundTint="@color/primary_green"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/txt_free_spotify"
@@ -112,6 +112,8 @@
         android:textColor="@color/primary_white"
         app:layout_constraintStart_toStartOf="@id/btn_continue_with_apple"
         app:layout_constraintEnd_toEndOf="@id/btn_continue_with_apple"
-        android:padding="@dimen/button_padding_top_bottom_13"/>
+        android:padding="@dimen/button_padding_top_bottom_13"
+        android:layout_marginTop="@dimen/margin_top_4"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

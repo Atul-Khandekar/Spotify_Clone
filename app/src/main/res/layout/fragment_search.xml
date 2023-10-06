@@ -17,28 +17,31 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
+            android:layout_marginTop="@dimen/margin_26"
             android:background="?attr/colorPrimary"
             app:layout_scrollFlags="scroll|enterAlways|snap"
-            app:title="@string/search"
-            app:titleTextColor="@color/primary_white"
-            app:titleTextAppearance="@style/navigation_top_title"
             app:menu="@menu/search_menu"
+            app:title="@string/search"
             app:titleMarginStart="0dp"
-            android:layout_marginTop="@dimen/margin_26"
-            />
+            app:titleTextAppearance="@style/navigation_top_title"
+            app:titleTextColor="@color/primary_white" />
 
-        <EditText
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/search_field"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/shape_search_field"
             android:layout_marginStart="15dp"
             android:layout_marginEnd="10dp"
-            android:hint="Artists, songs, or podcasts"
-            android:textSize="@dimen/search_field_text_size_16"
+            android:backgroundTint="@color/white"
+            android:drawableLeft="@drawable/ic_search_black"
+            android:drawablePadding="@dimen/search_field_padding_12"
+            android:text="@string/search_field_hint"
+            android:textColor="@color/primary_grey"
+            android:textAllCaps="false"
+            android:textAlignment="textStart"
+            app:cornerRadius="@dimen/search_field_8"
             android:padding="@dimen/search_field_padding_12"
-            android:inputType="text"
-            android:drawableStart="@drawable/ic_search_black"
-            android:drawablePadding="@dimen/search_field_padding_12"/>
+            android:textSize="@dimen/search_field_text_size_16" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -48,6 +51,6 @@
         android:layout_height="match_parent"
         android:layout_marginStart="15dp"
         android:layout_marginTop="15dp"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
