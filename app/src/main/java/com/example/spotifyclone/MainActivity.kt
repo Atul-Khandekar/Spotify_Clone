@@ -42,8 +42,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
-        val i = Intent(this, HomeScreenActivity::class.java)
-        startActivity(i)
+
     }
 
     private fun setUpView() {
