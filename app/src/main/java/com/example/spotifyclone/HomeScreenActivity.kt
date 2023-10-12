@@ -18,8 +18,29 @@ class HomeScreenActivity : AppCompatActivity() {
     lateinit var binding: ActivityHomeScreenBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        checkLoginStatus()
+        setUpView()
+        setUpBottomNavigation()
+
+    }
+
+    private fun checkLoginStatus() {
+        
+    }
+
+    private fun loadFragment(fragment: Fragment) {
+        supportFragmentManager.commit {
+            onEnterAnimationComplete()
+            replace(R.id.nav_host_fragment, fragment)
+        }
+    }
+
+    private fun setUpView() {
         binding = ActivityHomeScreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
+    }
+
+    private fun setUpBottomNavigation() {
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
@@ -51,13 +72,5 @@ class HomeScreenActivity : AppCompatActivity() {
             }
         }
     }
-
-    private fun loadFragment(fragment: Fragment) {
-        supportFragmentManager.commit {
-            onEnterAnimationComplete()
-            replace(R.id.nav_host_fragment, fragment)
-        }
-    }
-
 
 }

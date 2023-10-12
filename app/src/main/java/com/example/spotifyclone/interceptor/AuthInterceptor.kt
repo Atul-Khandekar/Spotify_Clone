@@ -1,11 +1,9 @@
 package com.example.spotifyclone.interceptor
 
 import com.example.spotifyclone.AppConstants
-import com.example.spotifyclone.utils.TokenManager
 import okhttp3.Credentials
 import okhttp3.Interceptor
 import okhttp3.Response
-import javax.inject.Inject
 
 class AuthInterceptor : Interceptor {
 

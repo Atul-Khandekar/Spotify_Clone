@@ -4,7 +4,7 @@ import com.example.spotifyclone.data.ApiError
 import com.google.gson.Gson
 import retrofit2.Response
 
-class BaseRepository {
+open class BaseRepository {
 
     fun <T> handleResponse(response: Response<T>): BaseResponse<T> {
         return try {

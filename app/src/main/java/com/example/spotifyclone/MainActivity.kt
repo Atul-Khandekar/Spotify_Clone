@@ -1,10 +1,9 @@
 package com.example.spotifyclone
 
-import android.app.Notification.Action
 import android.content.Intent
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.example.spotifyclone.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -43,7 +42,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
-
+        val i = Intent(this, HomeScreenActivity::class.java)
+        startActivity(i)
     }
 
     private fun setUpView() {
