@@ -3,17 +3,44 @@ package com.example.spotifyclone
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.lifecycleScope
 import com.example.spotifyclone.databinding.ActivityMainBinding
+import com.example.spotifyclone.viewmodel.MainViewModel
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private var _binding: ActivityMainBinding? = null
+    private val viewModel: MainViewModel by viewModels()
     private val binding get() = _binding!!
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        getLoginStatus()
         setUpView()
         setUpOnClickListeners()
+        setUpObservers()
+    }
+
+    private fun setUpObservers() {
+
+        viewModel.errorMessage.observe(this) { message ->
+            message?.let {
+                if (message.isNotEmpty()) {
+                    Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+                }
+            }
+        }
+
+        viewModel.accessToken.observe(this) {token ->
+            token?.let { loggedInSuccessfully() }
+        }
     }
 
     private fun setUpOnClickListeners() {
@@ -42,12 +69,28 @@ class MainActivity : AppCompatActivity() {
 
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
-
+        intent?.data?.getQueryParameter(AppConstants.CODE)?.also { code ->
+            viewModel.getAuthorizationToken(code)
+        }
     }
 
     private fun setUpView() {
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+    }
+
+    private fun getLoginStatus() {
+        viewModel.getLoginStatus { isLoggedIn ->
+            if (isLoggedIn) {
+                loggedInSuccessfully()
+            }
+        }
+    }
+
+    private fun loggedInSuccessfully() {
+        val intent = Intent(this, HomeScreenActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 
     override fun onDestroy() {

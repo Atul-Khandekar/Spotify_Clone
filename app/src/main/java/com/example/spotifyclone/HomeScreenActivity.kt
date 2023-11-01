@@ -7,6 +7,7 @@ import android.text.TextUtils.replace
 import android.widget.Toolbar
 import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import androidx.lifecycle.ViewModel
@@ -16,13 +17,16 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.spotifyclone.databinding.ActivityHomeScreenBinding
 import com.example.spotifyclone.viewmodel.HomeScreenViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HomeScreenActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityHomeScreenBinding
-    val viewModel: HomeScreenViewModel by viewModels()
+    private val viewModel: HomeScreenViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        installSplashScreen()
         checkLoginStatus()
         setUpView()
         setUpBottomNavigation()
@@ -52,6 +56,7 @@ class HomeScreenActivity : AppCompatActivity() {
     }
 
     private fun setUpView() {
+
         binding = ActivityHomeScreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
     }

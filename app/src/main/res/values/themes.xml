@@ -14,4 +14,11 @@
         <item name="colorPrimary">@color/primary_green</item>
 
     </style>
+
+    <style name="Theme.CustomSplashScreenTheme" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/black</item>
+        <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_spotify</item>
+        <item name="windowSplashScreenAnimationDuration">3000</item>
+        <item name="postSplashScreenTheme">@style/Theme.SpotifyClone.NoActionBar</item>
+    </style>
 </resources>

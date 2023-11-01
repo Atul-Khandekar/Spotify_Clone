@@ -17,5 +17,10 @@ object AppConstants {
     const val USER_TOKEN = "user_token"
 
     const val CONTENT_TYPE = "application/x-www-form-urlencoded"
+
+    const val CODE = "code"
+    const val AUTH_RETROFIT = "AUTH_RETROFIT"
+    const val API_RETROFIT = "API_RETROFIT"
+    const val NETWORK_TIMEOUT: Long = 60
 }
 

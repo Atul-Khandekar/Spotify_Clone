@@ -3,6 +3,7 @@ package com.example.spotifyclone.utils
 import android.content.Context
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
+import android.preference.PreferenceManager.getDefaultSharedPreferences
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
@@ -57,9 +58,5 @@ class Prefs (
 
     fun clearPreferences() {
         editor.clear().apply()
-    }
-
-    private fun getDefaultSharedPreferences(context: Context): SharedPreferences {
-        return getDefaultSharedPreferences(context)
     }
 }
