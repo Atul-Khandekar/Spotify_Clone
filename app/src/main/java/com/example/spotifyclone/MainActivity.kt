@@ -6,13 +6,10 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.lifecycleScope
+import com.example.spotifyclone.constants.AppConstants
 import com.example.spotifyclone.databinding.ActivityMainBinding
 import com.example.spotifyclone.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {

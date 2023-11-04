@@ -35,7 +35,6 @@ class ApiAuthenticator(
             "refresh_token" to prefs.getString(PrefsKeys.REFRESH_TOKEN, "")
         )
 
-
         return runBlocking {
 
             authRepository.get().refreshAccessToken(body).let { response ->

@@ -1,15 +1,16 @@
 package com.example.spotifyclone.di
 
 import android.content.Context
-import com.example.spotifyclone.AppConstants
-import com.example.spotifyclone.AppConstants.API_RETROFIT
-import com.example.spotifyclone.AppConstants.AUTH_RETROFIT
-import com.example.spotifyclone.AppConstants.NETWORK_TIMEOUT
+import com.example.spotifyclone.constants.AppConstants
+import com.example.spotifyclone.constants.AppConstants.API_RETROFIT
+import com.example.spotifyclone.constants.AppConstants.AUTH_RETROFIT
+import com.example.spotifyclone.constants.AppConstants.NETWORK_TIMEOUT
 import com.example.spotifyclone.base.BaseRepository
 import com.example.spotifyclone.interceptor.ApiAuthenticator
 import com.example.spotifyclone.interceptor.BasicAuthInterceptor
 import com.example.spotifyclone.repository.AuthRepository
 import com.example.spotifyclone.service.AuthService
+import com.example.spotifyclone.service.CurrentUserService
 import com.example.spotifyclone.utils.Prefs
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.Gson
@@ -35,11 +36,17 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun providesLoggingIntercepter(): HttpLoggingInterceptor = if (BuildConfig.DEBUG) {
-        HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BODY }
-    } else {
-        HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.NONE }
+    fun providesLoggingInterceptor(): HttpLoggingInterceptor {
+        val loggingInterceptor = HttpLoggingInterceptor()
+        if(BuildConfig.DEBUG){
+            loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
+        } else {
+            loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.NONE)
+        }
+
+        return loggingInterceptor
     }
+
 
     @Provides
     @Singleton
@@ -48,7 +55,7 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun providesBasicAuthIntercepter(): BasicAuthInterceptor = BasicAuthInterceptor()
+    fun providesBasicAuthInterceptor(): BasicAuthInterceptor = BasicAuthInterceptor()
 
     @Provides
     @Singleton
@@ -63,9 +70,9 @@ object NetworkModule {
         authInterceptor: BasicAuthInterceptor,
         apiAuthenticator: ApiAuthenticator
     ): OkHttpClient = OkHttpClient.Builder().readTimeout(NETWORK_TIMEOUT, TimeUnit.SECONDS)
-        .writeTimeout(NETWORK_TIMEOUT, TimeUnit.SECONDS).addInterceptor(loggingInterceptor)
-        .addInterceptor(authInterceptor).authenticator(apiAuthenticator).build()
-
+        .writeTimeout(NETWORK_TIMEOUT, TimeUnit.SECONDS)
+        .addInterceptor(authInterceptor).addInterceptor(loggingInterceptor)
+        .authenticator(apiAuthenticator).build()
 
     @Provides
     @Singleton
@@ -90,9 +97,15 @@ object NetworkModule {
     fun providesAuthService(@Named(AUTH_RETROFIT) retrofit: Retrofit): AuthService =
         retrofit.create(AuthService::class.java)
 
+    @Singleton
+    @Provides
+    fun providesCurrentUserService(@Named(API_RETROFIT) retrofit: Retrofit): CurrentUserService =
+        retrofit.create(CurrentUserService::class.java)
+
     @Provides
     @Singleton
-    fun providesAuthRepository(authService: AuthService): AuthRepository = AuthRepository(authService)
+    fun providesAuthRepository(authService: AuthService): AuthRepository =
+        AuthRepository(authService)
 
     @Provides
     @Singleton

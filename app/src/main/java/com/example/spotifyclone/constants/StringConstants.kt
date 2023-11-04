@@ -1,4 +1,4 @@
-package com.example.spotifyclone
+package com.example.spotifyclone.constants
 
 object StringConstants {
     const val INDIE_KID_ROOM_VIBES_COVER = "Indie Kid"

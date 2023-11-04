@@ -1,4 +1,4 @@
-package com.example.spotifyclone
+package com.example.spotifyclone.constants
 
 object ImageConstants {
     val INDIE_KID_ROOM_VIBES_COVER = "https://cdn.shopify.com/s/files/1/0566/6586/6400/files/Indie_Kid_Playlist.png?v=1625824790"

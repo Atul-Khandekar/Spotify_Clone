@@ -1,4 +1,4 @@
-package com.example.spotifyclone
+package com.example.spotifyclone.constants
 
 object AppConstants {
     const val BASE_AUTH_URL = "https://accounts.spotify.com/"
@@ -11,7 +11,8 @@ object AppConstants {
     const val CLIENT_SECRET = "03cfd3bd01744f7a9b422ecf69b5c67b"
     const val STATE = "XYZWabcdEFGH"
     const val REDIRECT_URI = "spotify://com.spotifyclone"
-    const val SCOPES = "ugc-image-upload user-read-playback-state user-modify-playback-state user-read-currently-playing app-remote-control streaming playlist-read-private playlist-read-collaborative playlist-modify-private playlist-modify-public user-follow-modify user-follow-read user-read-playback-position user-top-read user-read-recently-played user-library-modify user-library-read user-read-email user-read-private"
+    const val SCOPES =
+        "ugc-image-upload user-read-playback-state user-modify-playback-state user-read-currently-playing app-remote-control streaming playlist-read-private playlist-read-collaborative playlist-modify-private playlist-modify-public user-follow-modify user-follow-read user-read-playback-position user-top-read user-read-recently-played user-library-modify user-library-read user-read-email user-read-private"
 
     const val PREFS_FILE = "pref_file"
     const val USER_TOKEN = "user_token"
@@ -22,5 +23,8 @@ object AppConstants {
     const val AUTH_RETROFIT = "AUTH_RETROFIT"
     const val API_RETROFIT = "API_RETROFIT"
     const val NETWORK_TIMEOUT: Long = 60
+
+    const val USER_ID = "user_id"
+    const val USER_NAME = "user_name"
 }
 
