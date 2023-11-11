@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.spotifyclone.R
 import com.example.spotifyclone.databinding.ItemYourLibraryBinding
-import com.example.spotifyclone.models.PlayListModel
+import com.example.spotifyclone.models.local.PlayListModel
 
 class PlaylistAdapter : ListAdapter<PlayListModel, PlaylistAdapter.ViewHolder>(PlayListDiffUtil()) {
 

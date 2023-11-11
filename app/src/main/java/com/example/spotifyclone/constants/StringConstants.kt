@@ -11,4 +11,7 @@ object StringConstants {
     const val SOFT_GIRL_ROOM_VIBES = "Soft girl"
     const val GRUNGE_ROOM_VIBES = "Grunge"
     const val VINTAGE_ROOM_VIBES = "Vintage"
+
+    const val FEATURED_PLAYLISTS = "Featured Playlists"
+    const val ALBUMS = "Albums"
 }

@@ -1,4 +1,4 @@
-package com.example.spotifyclone.models
+package com.example.spotifyclone.models.remote
 
 import com.google.gson.annotations.SerializedName
 
@@ -22,16 +22,9 @@ data class ExplicitContent(
     @SerializedName("filter_locked") val filterLocked: Boolean?
 )
 
-data class ExternalUrls(
-    @SerializedName("spotify") val spotify: String?
-)
-
 data class Followers(
-    @SerializedName("href") val href: String?, @SerializedName("total") val total: Int?
-)
-
-data class Image(
-    @SerializedName("height") val height: Int?,
-    @SerializedName("url") val url: String?,
-    @SerializedName("width") val width: Int?
+    @SerializedName("href")
+    val href: String?,
+    @SerializedName("total")
+    val total: Int?
 )

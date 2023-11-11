@@ -10,7 +10,7 @@ import com.example.spotifyclone.constants.ImageConstants
 import com.example.spotifyclone.constants.StringConstants
 import com.example.spotifyclone.customadapters.PlaylistAdapter
 import com.example.spotifyclone.databinding.FragmentLibraryBinding
-import com.example.spotifyclone.models.PlayListModel
+import com.example.spotifyclone.models.local.PlayListModel
 import java.util.UUID
 
 class LibraryFragment : Fragment() {

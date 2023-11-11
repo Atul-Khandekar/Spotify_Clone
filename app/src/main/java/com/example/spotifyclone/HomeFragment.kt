@@ -4,77 +4,43 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.core.content.res.ResourcesCompat
-import androidx.core.view.GravityCompat
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.spotifyclone.customadapters.HomeScreenAdapter
+import com.example.spotifyclone.customadapters.HomePageAdapter
 import com.example.spotifyclone.databinding.FragmentHomeBinding
-import com.example.spotifyclone.models.HomeScreenModel
-import java.util.UUID
+import com.example.spotifyclone.viewmodel.HomeScreenViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+    private val viewModel: HomeScreenViewModel by viewModels()
+    private val rvAdapter = HomePageAdapter()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val adapter = HomeScreenAdapter()
-        adapter.submitList(
-            listOf(
-                HomeScreenModel(listOf(), UUID.randomUUID(), "Music"),
-                HomeScreenModel(listOf(), UUID.randomUUID(), "Sports"),
-                HomeScreenModel(listOf(), UUID.randomUUID(), "Government"),
-                HomeScreenModel(listOf(), UUID.randomUUID(), "Art"),
-                HomeScreenModel(listOf(), UUID.randomUUID(), "Movies"),
-
-                )
-        )
+        setUpObserver()
         binding.parentRecyclerView.apply {
             layoutManager = LinearLayoutManager(view.context)
             setHasFixedSize(true)
-            this.adapter = adapter
+            this.adapter = rvAdapter
+        }
+    }
+
+    private fun setUpObserver() {
+        viewModel.homePageList.observe(viewLifecycleOwner) {
+            rvAdapter.submitList(it)
         }
 
-//        val toggle = ActionBarDrawerToggle(
-//            activity,
-//            binding.drawerLayout,
-//            binding.actionBarHomeActivity,
-//            R.string.navigation_drawer_open,
-//            R.string.navigation_drawer_close
-//        )
-//        binding.drawerLayout.addDrawerListener(toggle)
-//        toggle.syncState()
-//        toggle.isDrawerIndicatorEnabled = false
-//        val drawable = ResourcesCompat.getDrawable(resources , R.drawable.ic_menu , activity?.theme)
-//        toggle.setHomeAsUpIndicator(drawable)
-//
-//        toggle.toolbarNavigationClickListener = View.OnClickListener {
-//            if (binding.drawerLayout.isDrawerVisible(GravityCompat.START)) {
-//                binding.drawerLayout.closeDrawer(GravityCompat.START)
-//            } else {
-//                binding.drawerLayout.openDrawer(GravityCompat.START)
-//            }
-//        }
-
-        binding.apply {
-            navigationView.apply {
-                bringToFront()
+        viewModel.errorMessage.observe(viewLifecycleOwner) {
+            it?.also {
+                Toast.makeText(binding.root.context,it,Toast.LENGTH_LONG).show()
             }
-            actionBarHomeActivity.apply {
-
-            }
-
         }
-
-
     }
 
     override fun onCreateView(
@@ -87,7 +53,6 @@ class HomeFragment : Fragment() {
     override fun onDestroyView() {
         _binding = null
         super.onDestroyView()
-
     }
 
 }

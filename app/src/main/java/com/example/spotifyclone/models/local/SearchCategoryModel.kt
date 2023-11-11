@@ -1,4 +1,4 @@
-package com.example.spotifyclone.models
+package com.example.spotifyclone.models.local
 
 import java.util.UUID
 

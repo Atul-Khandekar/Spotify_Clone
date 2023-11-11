@@ -5,7 +5,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.spotifyclone.databinding.ItemSongBinding
-import com.example.spotifyclone.models.SearchSongModel
+import com.example.spotifyclone.models.local.SearchSongModel
 
 class SearchSongAdapter : ListAdapter<SearchSongModel, SearchSongAdapter.ViewHolder>(SearchSongDiffUtil()) {
 

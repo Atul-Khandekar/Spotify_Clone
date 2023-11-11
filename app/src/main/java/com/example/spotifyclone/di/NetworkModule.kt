@@ -1,23 +1,25 @@
 package com.example.spotifyclone.di
 
 import android.content.Context
+import com.example.spotifyclone.base.BaseRepository
 import com.example.spotifyclone.constants.AppConstants
 import com.example.spotifyclone.constants.AppConstants.API_RETROFIT
 import com.example.spotifyclone.constants.AppConstants.AUTH_RETROFIT
 import com.example.spotifyclone.constants.AppConstants.NETWORK_TIMEOUT
-import com.example.spotifyclone.base.BaseRepository
 import com.example.spotifyclone.interceptor.ApiAuthenticator
 import com.example.spotifyclone.interceptor.BasicAuthInterceptor
 import com.example.spotifyclone.repository.AuthRepository
+import com.example.spotifyclone.repository.HomeRepository
 import com.example.spotifyclone.service.AuthService
 import com.example.spotifyclone.service.CurrentUserService
+import com.example.spotifyclone.service.HomeService
 import com.example.spotifyclone.utils.Prefs
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.squareup.picasso.BuildConfig
-import dagger.Module
 import dagger.Lazy
+import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -38,7 +40,7 @@ object NetworkModule {
     @Singleton
     fun providesLoggingInterceptor(): HttpLoggingInterceptor {
         val loggingInterceptor = HttpLoggingInterceptor()
-        if(BuildConfig.DEBUG){
+        if (BuildConfig.DEBUG) {
             loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
         } else {
             loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.NONE)
@@ -102,6 +104,12 @@ object NetworkModule {
     fun providesCurrentUserService(@Named(API_RETROFIT) retrofit: Retrofit): CurrentUserService =
         retrofit.create(CurrentUserService::class.java)
 
+    @Singleton
+    @Provides
+    fun providesHomeService(@Named(API_RETROFIT) retrofit: Retrofit): HomeService = retrofit.create(
+        HomeService::class.java
+    )
+
     @Provides
     @Singleton
     fun providesAuthRepository(authService: AuthService): AuthRepository =
@@ -110,4 +118,8 @@ object NetworkModule {
     @Provides
     @Singleton
     fun providesBaseRepository(): BaseRepository = BaseRepository()
+
+    @Singleton
+    @Provides
+    fun providesHomeRepository(homeService: HomeService): HomeRepository = HomeRepository(homeService)
 }
