@@ -1,16 +1,17 @@
 package com.example.spotifyclone.viewmodel
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.spotifyclone.constants.AppConstants
 import com.example.spotifyclone.base.BaseResponse
+import com.example.spotifyclone.constants.AppConstants
 import com.example.spotifyclone.data.GrantType
 import com.example.spotifyclone.repository.AuthRepository
-import com.example.spotifyclone.repository.CurrentUserRepository
 import com.example.spotifyclone.utils.Prefs
 import com.example.spotifyclone.utils.PrefsKeys
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import java.util.Calendar
 import javax.inject.Inject
@@ -19,17 +20,16 @@ import javax.inject.Inject
 class MainViewModel @Inject constructor(
     private val authRepository: AuthRepository,
     private val prefs: Prefs,
-    private val currentUserRepository: CurrentUserRepository
 ) : ViewModel() {
 
-    private val _accessToken = MutableLiveData<String?>(null)
-    val accessToken get() = _accessToken
+    private val _accessToken = MutableStateFlow<String?>(null)
+    val accessToken: StateFlow<String?> get() = _accessToken
 
-    private val _isLoading = MutableLiveData(false)
-    val isLoading get() = _isLoading
+    private val _isLoading = MutableStateFlow(false)
+    val isLoading: StateFlow<Boolean> get() = _isLoading
 
-    private val _errorMessage = MutableLiveData<String?>(null)
-    val errorMessage get() = _errorMessage
+    private val _errorMessage = MutableStateFlow<String?>(null)
+    val errorMessage: StateFlow<String?> get() = _errorMessage
 
     fun getAuthorizationToken(code: String) {
         viewModelScope.launch {
@@ -39,10 +39,10 @@ class MainViewModel @Inject constructor(
                 "redirect_uri" to AppConstants.REDIRECT_URI
             )
 
-            authRepository.getAuthorizationToken(body).let { response ->
+            authRepository.getAuthorizationToken(body).collectLatest { response ->
                 when (response) {
                     is BaseResponse.Loading -> {
-                        _isLoading.value = true
+                        _isLoading.emit(true)
                     }
 
                     is BaseResponse.Success -> {
@@ -64,20 +64,16 @@ class MainViewModel @Inject constructor(
 
                             prefs.putBoolean(PrefsKeys.IS_LOGGED_IN, true)
                         }
-//                        getCurrentUserProfile()
-                        _isLoading.value = false
-                        _accessToken.value = response.data?.accessToken
+                        _isLoading.emit(false)
+                        _accessToken.emit(response.data?.accessToken)
                     }
 
                     is BaseResponse.Error -> {
-                        _isLoading.value = false
-                        response.msg?.also { message ->
-                            _errorMessage.value = message
-                        }
+                        _isLoading.emit(false)
+                        _errorMessage.emit(response.msg)
                     }
                 }
             }
-
         }
     }
 
@@ -86,6 +82,4 @@ class MainViewModel @Inject constructor(
             handler(this.isNotEmpty())
         }
     }
-
-//
 }

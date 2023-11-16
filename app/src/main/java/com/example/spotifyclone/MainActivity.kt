@@ -6,10 +6,13 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import com.example.spotifyclone.constants.AppConstants
 import com.example.spotifyclone.databinding.ActivityMainBinding
 import com.example.spotifyclone.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -27,16 +30,18 @@ class MainActivity : AppCompatActivity() {
 
     private fun setUpObservers() {
 
-        viewModel.errorMessage.observe(this) { message ->
-            message?.let {
-                if (message.isNotEmpty()) {
-                    Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+        lifecycleScope.launch {
+            viewModel.errorMessage.collectLatest { message ->
+                message?.let {
+                    if (message.isNotEmpty()) {
+                        Toast.makeText(parent, message, Toast.LENGTH_LONG).show()
+                    }
                 }
             }
-        }
 
-        viewModel.accessToken.observe(this) {token ->
-            token?.let { loggedInSuccessfully() }
+            viewModel.accessToken.collectLatest { token ->
+                token?.let { loggedInSuccessfully() }
+            }
         }
     }
 

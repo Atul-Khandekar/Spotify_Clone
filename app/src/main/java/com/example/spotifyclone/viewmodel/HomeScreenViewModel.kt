@@ -1,6 +1,5 @@
 package com.example.spotifyclone.viewmodel
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.spotifyclone.base.BaseResponse
@@ -14,6 +13,9 @@ import com.example.spotifyclone.repository.HomeRepository
 import com.example.spotifyclone.utils.Prefs
 import com.example.spotifyclone.utils.PrefsKeys
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -24,20 +26,20 @@ class HomeScreenViewModel @Inject constructor(
     private val homeRepository: HomeRepository
 ) : ViewModel() {
 
-    private val _profileFetched = MutableLiveData(false)
-    val profileFetched get() = _profileFetched
+    private val _profileFetched = MutableStateFlow(false)
+    val profileFetched: StateFlow<Boolean> get() = _profileFetched
 
-    private val _profileFetchingError = MutableLiveData<String?>(null)
-    val profileFetchingError get() = _profileFetchingError
+    private val _profileFetchingError = MutableStateFlow<String?>(null)
+    val profileFetchingError: StateFlow<String?> get() = _profileFetchingError
 
-    private val _isLoading = MutableLiveData(false)
-    val isLoading get() = _isLoading
+    private val _isLoading = MutableStateFlow(false)
+    val isLoading: StateFlow<Boolean> get() = _isLoading
 
-    private val _homePageList = MutableLiveData<List<HomePageData>>(listOf())
-    val homePageList = _homePageList
+    private val _homePageList = MutableStateFlow<List<HomePageData?>?>(listOf())
+    val homePageList: StateFlow<List<HomePageData?>?> get() = _homePageList
 
-    private val _errorMessage = MutableLiveData<String?>(null)
-    val errorMessage get() = _errorMessage
+    private val _errorMessage = MutableStateFlow<String?>(null)
+    val errorMessage: StateFlow<String?> get() = _errorMessage
 
     init {
         getFeaturedPlaylist()
@@ -51,13 +53,17 @@ class HomeScreenViewModel @Inject constructor(
 
     fun getCurrentUserProfile() {
         viewModelScope.launch {
-            currentUserRepository.getCurrentUserProfile().also { response ->
+            currentUserRepository.getCurrentUserProfile().collectLatest { response ->
                 when (response) {
+                    is BaseResponse.Loading -> {
+                        _isLoading.emit(true)
+                    }
+
                     is BaseResponse.Success -> {
                         response.data?.also { currentUserProfile ->
 
                             currentUserProfile.id?.also {
-                                _profileFetched.value = true
+                                _profileFetched.emit(true)
                                 prefs.putString(AppConstants.USER_ID, it)
 
                             }
@@ -67,16 +73,13 @@ class HomeScreenViewModel @Inject constructor(
 
                             }
                         }
+                        _isLoading.emit(false)
 
                     }
 
                     is BaseResponse.Error -> {
-                        _profileFetched.value = false
-                        _profileFetchingError.value = response.msg
-                    }
-
-                    else -> {
-
+                        _profileFetched.emit(false)
+                        _profileFetchingError.emit(response.msg)
                     }
                 }
             }
@@ -85,11 +88,10 @@ class HomeScreenViewModel @Inject constructor(
 
     fun getFeaturedPlaylist() {
         viewModelScope.launch {
-            homeRepository.getFeaturedPlaylist().also { response ->
+            homeRepository.getFeaturedPlaylist().collectLatest { response ->
                 when (response) {
-
                     is BaseResponse.Loading -> {
-                        _isLoading.value = true
+                        _isLoading.emit(true)
                     }
 
                     is BaseResponse.Success -> {
@@ -106,20 +108,20 @@ class HomeScreenViewModel @Inject constructor(
                                 )
                             }
                             list?.also { listOfItems ->
-                                _homePageList.value = _homePageList.value?.plus(
+
+                                homePageList.value?.plus(
                                     HomePageData(
                                         StringConstants.FEATURED_PLAYLISTS, listOfItems
                                     )
-                                )
+                                ).let { it1 -> _homePageList.emit(it1) }
                             }
-                            _isLoading.value = false
-
+                            _isLoading.emit(false)
                         }
                     }
 
                     is BaseResponse.Error -> {
-                        _errorMessage.value = response.msg
-                        _isLoading.value = false
+                        _errorMessage.emit(response.msg)
+                        _isLoading.emit(false)
                     }
                 }
             }
