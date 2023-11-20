@@ -34,6 +34,11 @@ class HomeFragment : Fragment() {
             setHasFixedSize(true)
             this.adapter = rvAdapter
         }
+        setUpHomeScreen()
+    }
+
+    private fun setUpHomeScreen() {
+        viewModel.getHomeScreenData()
     }
 
     private fun setUpObserver() {
@@ -43,6 +48,7 @@ class HomeFragment : Fragment() {
                 launch {
                     viewModel.homePageList.collectLatest {
                         rvAdapter.submitList(it)
+
                     }
 
                     viewModel.errorMessage.collectLatest {
@@ -50,9 +56,35 @@ class HomeFragment : Fragment() {
                             Toast.makeText(binding.root.context, it, Toast.LENGTH_LONG).show()
                         }
                     }
+
+
+                    viewModel.isLoading.collectLatest { isLoading ->
+                       isLoading?.also{
+                           if (it) {
+                               showLoading()
+                           } else {
+                               hideLoading()
+                           }
+                       }
+                    }
+
                 }
             }
 
+        }
+    }
+
+    private fun showLoading() {
+        binding.apply {
+            parentRecyclerView.visibility = View.GONE
+            loadingSpinner.visibility = View.VISIBLE
+        }
+    }
+
+    private fun hideLoading() {
+        binding.apply {
+            parentRecyclerView.visibility = View.VISIBLE
+            loadingSpinner.visibility = View.GONE
         }
     }
 

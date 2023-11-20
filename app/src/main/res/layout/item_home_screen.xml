@@ -13,7 +13,6 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_start_end_45"
         android:layout_marginBottom="@dimen/margin_start_end_45"
         android:background="@color/black">
 
@@ -25,6 +24,8 @@
             android:text="@{item.section}"
             android:textColor="@color/primary_white"
             android:textSize="@dimen/section_font_size_24"
+            android:textStyle="bold"
+            android:layout_marginStart="@dimen/dp_10"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

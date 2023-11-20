@@ -41,7 +41,7 @@
     <dimen name="navigation_title_text_size_28">28sp</dimen>
     <dimen name="search_field_text_size_16">16sp</dimen>
     <dimen name="text_size_13">13sp</dimen>
-
+    <dimen name="dp_10">10dp</dimen>
 
 
 </resources>

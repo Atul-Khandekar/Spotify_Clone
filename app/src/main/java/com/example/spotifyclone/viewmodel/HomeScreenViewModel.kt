@@ -32,8 +32,8 @@ class HomeScreenViewModel @Inject constructor(
     private val _profileFetchingError = MutableStateFlow<String?>(null)
     val profileFetchingError: StateFlow<String?> get() = _profileFetchingError
 
-    private val _isLoading = MutableStateFlow(false)
-    val isLoading: StateFlow<Boolean> get() = _isLoading
+    private val _isLoading = MutableStateFlow<Boolean?>(null)
+    val isLoading: StateFlow<Boolean?> get() = _isLoading
 
     private val _homePageList = MutableStateFlow<List<HomePageData?>?>(listOf())
     val homePageList: StateFlow<List<HomePageData?>?> get() = _homePageList
@@ -41,8 +41,9 @@ class HomeScreenViewModel @Inject constructor(
     private val _errorMessage = MutableStateFlow<String?>(null)
     val errorMessage: StateFlow<String?> get() = _errorMessage
 
-    init {
+    fun getHomeScreenData() {
         getFeaturedPlaylist()
+        getAlbums()
     }
 
     fun getLoginStatus(handler: (Boolean) -> Unit) {
@@ -56,7 +57,7 @@ class HomeScreenViewModel @Inject constructor(
             currentUserRepository.getCurrentUserProfile().collectLatest { response ->
                 when (response) {
                     is BaseResponse.Loading -> {
-                        _isLoading.emit(true)
+
                     }
 
                     is BaseResponse.Success -> {
@@ -73,7 +74,6 @@ class HomeScreenViewModel @Inject constructor(
 
                             }
                         }
-                        _isLoading.emit(false)
 
                     }
 
@@ -86,7 +86,7 @@ class HomeScreenViewModel @Inject constructor(
         }
     }
 
-    fun getFeaturedPlaylist() {
+    private fun getFeaturedPlaylist() {
         viewModelScope.launch {
             homeRepository.getFeaturedPlaylist().collectLatest { response ->
                 when (response) {
@@ -107,6 +107,8 @@ class HomeScreenViewModel @Inject constructor(
                                     playlistItem.type ?: ""
                                 )
                             }
+
+                            _isLoading.emit(false)
                             list?.also { listOfItems ->
 
                                 homePageList.value?.plus(
@@ -115,7 +117,7 @@ class HomeScreenViewModel @Inject constructor(
                                     )
                                 ).let { it1 -> _homePageList.emit(it1) }
                             }
-                            _isLoading.emit(false)
+
                         }
                     }
 
@@ -123,6 +125,51 @@ class HomeScreenViewModel @Inject constructor(
                         _errorMessage.emit(response.msg)
                         _isLoading.emit(false)
                     }
+                }
+            }
+        }
+    }
+
+    private fun getAlbums() {
+        viewModelScope.launch {
+            homeRepository.getAlbums().collectLatest {response ->
+                when(response) {
+                    is BaseResponse.Loading -> {
+                        _isLoading.emit(true)
+                    }
+
+                    is BaseResponse.Success -> {
+                        response.data?.albums?.also {
+                            val list = it.items?.map { albumItem ->
+                                val imageUrl = albumItem.images?.firstOrNull()?.url
+                                    ?: ImageConstants.DEFAULT_SONG_BACKGROUND_IMAGE
+                                HomePageItem(
+                                    albumItem.name ?: "",
+                                    albumItem.id ?: "",
+                                    imageUrl,
+                                    albumItem.type ?: ""
+                                )
+                            }
+                            _isLoading.emit(false)
+
+                            list?.also { listOfItems ->
+
+                                homePageList.value?.plus(
+                                    HomePageData(
+                                        StringConstants.ALBUMS, listOfItems
+                                    )
+                                ).let { it1 -> _homePageList.emit(it1) }
+                            }
+
+                        }
+
+                    }
+
+                    is BaseResponse.Error -> {
+                        _errorMessage.emit(response.msg)
+                        _isLoading.emit(false)
+                    }
+
                 }
             }
         }
