@@ -44,6 +44,7 @@ class HomeScreenViewModel @Inject constructor(
     fun getHomeScreenData() {
         getFeaturedPlaylist()
         getAlbums()
+        getUsersPlaylists()
     }
 
     fun getLoginStatus(handler: (Boolean) -> Unit) {
@@ -132,8 +133,8 @@ class HomeScreenViewModel @Inject constructor(
 
     private fun getAlbums() {
         viewModelScope.launch {
-            homeRepository.getAlbums().collectLatest {response ->
-                when(response) {
+            homeRepository.getAlbums().collectLatest { response ->
+                when (response) {
                     is BaseResponse.Loading -> {
                         _isLoading.emit(true)
                     }
@@ -170,6 +171,50 @@ class HomeScreenViewModel @Inject constructor(
                         _isLoading.emit(false)
                     }
 
+                }
+            }
+        }
+    }
+
+    private fun getUsersPlaylists() {
+        viewModelScope.launch {
+            homeRepository.getUsersPlaylists().collectLatest { response ->
+                when (response) {
+                    is BaseResponse.Loading -> {
+                        _isLoading.emit(true)
+                    }
+
+                    is BaseResponse.Success -> {
+                        response.data?.also {
+
+                            val list = it.items?.map { playlistItem ->
+                                val imageUrl = playlistItem.images?.firstOrNull()?.url
+                                    ?: ImageConstants.DEFAULT_SONG_BACKGROUND_IMAGE
+                                HomePageItem(
+                                    playlistItem.name ?: "",
+                                    playlistItem.id ?: "",
+                                    imageUrl,
+                                    playlistItem.type ?: ""
+                                )
+                            }
+
+                            _isLoading.emit(false)
+                            list?.also { listOfItems ->
+
+                                homePageList.value?.plus(
+                                    HomePageData(
+                                        StringConstants.YOUR_PLAYLISTS, listOfItems
+                                    )
+                                ).let { it1 -> _homePageList.emit(it1) }
+                            }
+
+                        }
+                    }
+
+                    is BaseResponse.Error -> {
+                        _isLoading.emit(false)
+                        _errorMessage.emit(response.msg)
+                    }
                 }
             }
         }

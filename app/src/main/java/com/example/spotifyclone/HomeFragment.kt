@@ -26,6 +26,13 @@ class HomeFragment : Fragment() {
     private val viewModel: HomeScreenViewModel by viewModels()
     private val rvAdapter = HomePageAdapter()
 
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUpObserver()
@@ -57,7 +64,6 @@ class HomeFragment : Fragment() {
                         }
                     }
 
-
                     viewModel.isLoading.collectLatest { isLoading ->
                        isLoading?.also{
                            if (it) {
@@ -86,13 +92,6 @@ class HomeFragment : Fragment() {
             parentRecyclerView.visibility = View.VISIBLE
             loadingSpinner.visibility = View.GONE
         }
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        return binding.root
     }
 
     override fun onDestroyView() {

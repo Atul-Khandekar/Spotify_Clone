@@ -19,4 +19,9 @@ class HomeRepository @Inject constructor(private val homeService: HomeService) :
         emit(BaseResponse.Loading())
         emit(handleResponse(homeService.getAlbums()))
     }.flowOn(Dispatchers.IO)
+
+    suspend fun getUsersPlaylists() = flow  {
+        emit(BaseResponse.Loading())
+        emit(handleResponse(homeService.getUsersPlaylists()))
+    }.flowOn(Dispatchers.IO)
 }
