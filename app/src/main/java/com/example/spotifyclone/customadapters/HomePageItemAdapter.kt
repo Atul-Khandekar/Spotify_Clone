@@ -1,6 +1,5 @@
 package com.example.spotifyclone.customadapters
 
-import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.DiffUtil
 import com.example.spotifyclone.R
 import com.example.spotifyclone.base.BaseAdapter
@@ -20,9 +19,5 @@ class HomePageItemAdapter : BaseAdapter<HomePageItem>(ItemDiffUtil()) {
 
     override fun getItemViewType(position: Int): Int {
         return R.layout.item_horizontal_recycler_view
-    }
-
-    override fun setDataForItems(binding: ViewDataBinding, item: HomePageItem) {
-        super.setDataForItems(binding, item)
     }
 }

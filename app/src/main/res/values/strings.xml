@@ -49,4 +49,5 @@
     <string name="category_title">Category Title</string>
     <string name="search_library_title">Search Library</string>
     <string name="add_library_title">Add Library</string>
+    <string name="track_name">Track Name </string>
 </resources>
