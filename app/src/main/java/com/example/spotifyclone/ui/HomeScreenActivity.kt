@@ -1,4 +1,4 @@
-package com.example.spotifyclone
+package com.example.spotifyclone.ui
 
 import android.content.Intent
 import android.os.Bundle
@@ -11,6 +11,7 @@ import androidx.fragment.app.commit
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import com.example.spotifyclone.R
 import com.example.spotifyclone.constants.AppConstants
 import com.example.spotifyclone.databinding.ActivityHomeScreenBinding
 import com.example.spotifyclone.utils.Prefs

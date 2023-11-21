@@ -7,13 +7,13 @@
     android:layout_height="match_parent"
     android:background="@color/primary_black"
     android:fitsSystemWindows="false"
-    tools:context=".HomeFragment">
+    tools:context=".ui.HomeFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/black"
-        tools:context=".HomeFragment">
+        tools:context=".ui.HomeFragment">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/action_bar_home_activity"

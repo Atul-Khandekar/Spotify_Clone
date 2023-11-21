@@ -1,4 +1,4 @@
-package com.example.spotifyclone
+package com.example.spotifyclone.ui
 
 import android.content.Intent
 import android.net.Uri

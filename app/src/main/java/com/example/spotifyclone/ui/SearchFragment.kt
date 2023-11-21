@@ -1,4 +1,4 @@
-package com.example.spotifyclone
+package com.example.spotifyclone.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.commit
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.spotifyclone.R
 import com.example.spotifyclone.customadapters.SearchCategoryAdapter
 import com.example.spotifyclone.databinding.FragmentSearchBinding
 import com.example.spotifyclone.models.local.SearchCategoryModel
@@ -50,7 +51,7 @@ class SearchFragment : Fragment() {
 
           val activity = activity as HomeScreenActivity
             activity.supportFragmentManager.commit {
-                add(R.id.nav_host_fragment , SearchSongFragment())
+                add(R.id.nav_host_fragment, SearchSongFragment())
             }
         }
 
@@ -58,7 +59,7 @@ class SearchFragment : Fragment() {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.search_menu , menu)
+        inflater.inflate(R.menu.search_menu, menu)
     }
 
     override fun onDestroyView() {
