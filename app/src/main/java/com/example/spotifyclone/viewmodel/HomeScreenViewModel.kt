@@ -7,7 +7,7 @@ import com.example.spotifyclone.constants.AppConstants
 import com.example.spotifyclone.constants.ImageConstants
 import com.example.spotifyclone.constants.StringConstants
 import com.example.spotifyclone.models.local.HomePageData
-import com.example.spotifyclone.models.local.HomePageItem
+import com.example.spotifyclone.models.local.HomePageItemData
 import com.example.spotifyclone.repository.CurrentUserRepository
 import com.example.spotifyclone.repository.HomeRepository
 import com.example.spotifyclone.utils.Prefs
@@ -101,7 +101,7 @@ class HomeScreenViewModel @Inject constructor(
                             val list = it.items?.map { playlistItem ->
                                 val imageUrl = playlistItem.images?.firstOrNull()?.url
                                     ?: ImageConstants.DEFAULT_SONG_BACKGROUND_IMAGE
-                                HomePageItem(
+                                HomePageItemData(
                                     playlistItem.name ?: "",
                                     playlistItem.id ?: "",
                                     imageUrl,
@@ -144,7 +144,7 @@ class HomeScreenViewModel @Inject constructor(
                             val list = it.items?.map { albumItem ->
                                 val imageUrl = albumItem.images?.firstOrNull()?.url
                                     ?: ImageConstants.DEFAULT_SONG_BACKGROUND_IMAGE
-                                HomePageItem(
+                                HomePageItemData(
                                     albumItem.name ?: "",
                                     albumItem.id ?: "",
                                     imageUrl,
@@ -190,7 +190,7 @@ class HomeScreenViewModel @Inject constructor(
                             val list = it.items?.map { playlistItem ->
                                 val imageUrl = playlistItem.images?.firstOrNull()?.url
                                     ?: ImageConstants.DEFAULT_SONG_BACKGROUND_IMAGE
-                                HomePageItem(
+                                HomePageItemData(
                                     playlistItem.name ?: "",
                                     playlistItem.id ?: "",
                                     imageUrl,

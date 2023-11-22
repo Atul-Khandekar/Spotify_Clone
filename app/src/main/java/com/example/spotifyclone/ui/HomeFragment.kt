@@ -24,7 +24,9 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private val viewModel: HomeScreenViewModel by viewModels()
-    private val rvAdapter = HomePageAdapter()
+    private val rvAdapter = HomePageAdapter {
+
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?

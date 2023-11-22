@@ -6,7 +6,7 @@
 
         <variable
             name="item"
-            type="com.example.spotifyclone.models.local.HomePageItem" />
+            type="com.example.spotifyclone.models.local.HomePageItemData" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

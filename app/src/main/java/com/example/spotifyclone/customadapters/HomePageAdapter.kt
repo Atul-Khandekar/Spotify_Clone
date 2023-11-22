@@ -6,9 +6,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.spotifyclone.R
 import com.example.spotifyclone.base.BaseAdapter
 import com.example.spotifyclone.databinding.ItemHomeScreenBinding
+import com.example.spotifyclone.listeners.ItemClickListener
 import com.example.spotifyclone.models.local.HomePageData
+import com.example.spotifyclone.models.local.HomePageItemData
 
-class HomePageAdapter : BaseAdapter<HomePageData>(HomeDiffUtil()) {
+class HomePageAdapter(private val  clickHandler: (HomePageItemData) -> Unit) : BaseAdapter<HomePageData>(HomeDiffUtil()) {
 
     class HomeDiffUtil : DiffUtil.ItemCallback<HomePageData>() {
         override fun areItemsTheSame(oldItem: HomePageData, newItem: HomePageData): Boolean {
@@ -35,7 +37,13 @@ class HomePageAdapter : BaseAdapter<HomePageData>(HomeDiffUtil()) {
                 this.adapter = adapter
             }
         }
+
         adapter.submitList(item.items)
+        adapter.itemClickListener = object : ItemClickListener<HomePageItemData> {
+            override fun onItemClick(item: HomePageItemData, position: Int) {
+                clickHandler(item)
+            }
+        }
     }
 
 }

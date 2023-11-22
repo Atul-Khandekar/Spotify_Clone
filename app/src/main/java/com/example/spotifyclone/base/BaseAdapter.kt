@@ -8,9 +8,12 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.spotifyclone.BR
+import com.example.spotifyclone.listeners.ItemClickListener
 
 abstract class BaseAdapter<T>(diffUtil: DiffUtil.ItemCallback<T>) :
     ListAdapter<T, BaseAdapter<T>.BaseViewHolder>(diffUtil) {
+
+    open var itemClickListener: ItemClickListener<T>? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -30,6 +33,12 @@ abstract class BaseAdapter<T>(diffUtil: DiffUtil.ItemCallback<T>) :
 
     open inner class BaseViewHolder(private val binding: ViewDataBinding) :
         RecyclerView.ViewHolder(binding.root) {
+
+        init {
+            binding.root.setOnClickListener {
+                itemClickListener?.onItemClick(getItem(adapterPosition), adapterPosition)
+            }
+        }
 
         fun bind(item: T) {
             setDataForItems(binding, item)

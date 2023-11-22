@@ -3,16 +3,16 @@ package com.example.spotifyclone.customadapters
 import androidx.recyclerview.widget.DiffUtil
 import com.example.spotifyclone.R
 import com.example.spotifyclone.base.BaseAdapter
-import com.example.spotifyclone.models.local.HomePageItem
+import com.example.spotifyclone.models.local.HomePageItemData
 
-class HomePageItemAdapter : BaseAdapter<HomePageItem>(ItemDiffUtil()) {
+class HomePageItemAdapter : BaseAdapter<HomePageItemData>(ItemDiffUtil()) {
 
-    class ItemDiffUtil : DiffUtil.ItemCallback<HomePageItem>() {
-        override fun areItemsTheSame(oldItem: HomePageItem, newItem: HomePageItem): Boolean {
+    class ItemDiffUtil : DiffUtil.ItemCallback<HomePageItemData>() {
+        override fun areItemsTheSame(oldItem: HomePageItemData, newItem: HomePageItemData): Boolean {
             return oldItem.id == newItem.id
         }
 
-        override fun areContentsTheSame(oldItem: HomePageItem, newItem: HomePageItem): Boolean {
+        override fun areContentsTheSame(oldItem: HomePageItemData, newItem: HomePageItemData): Boolean {
             return oldItem == newItem
         }
     }
