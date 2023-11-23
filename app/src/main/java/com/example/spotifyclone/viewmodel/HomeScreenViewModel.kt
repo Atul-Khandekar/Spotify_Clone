@@ -8,6 +8,7 @@ import com.example.spotifyclone.constants.ImageConstants
 import com.example.spotifyclone.constants.StringConstants
 import com.example.spotifyclone.models.local.HomePageData
 import com.example.spotifyclone.models.local.HomePageItemData
+import com.example.spotifyclone.models.local.MediaItemType
 import com.example.spotifyclone.repository.CurrentUserRepository
 import com.example.spotifyclone.repository.HomeRepository
 import com.example.spotifyclone.utils.Prefs
@@ -105,7 +106,7 @@ class HomeScreenViewModel @Inject constructor(
                                     playlistItem.name ?: "",
                                     playlistItem.id ?: "",
                                     imageUrl,
-                                    playlistItem.type ?: ""
+                                    MediaItemType.Playlist()
                                 )
                             }
 
@@ -148,7 +149,7 @@ class HomeScreenViewModel @Inject constructor(
                                     albumItem.name ?: "",
                                     albumItem.id ?: "",
                                     imageUrl,
-                                    albumItem.type ?: ""
+                                    MediaItemType.Album()
                                 )
                             }
                             _isLoading.emit(false)
@@ -194,7 +195,7 @@ class HomeScreenViewModel @Inject constructor(
                                     playlistItem.name ?: "",
                                     playlistItem.id ?: "",
                                     imageUrl,
-                                    playlistItem.type ?: ""
+                                    MediaItemType.Playlist()
                                 )
                             }
 

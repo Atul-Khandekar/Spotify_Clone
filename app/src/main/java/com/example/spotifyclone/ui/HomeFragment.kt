@@ -26,6 +26,7 @@ class HomeFragment : Fragment() {
     private val viewModel: HomeScreenViewModel by viewModels()
     private val rvAdapter = HomePageAdapter {
 
+        val destination = HomeFragmentDirections.actionHomeFragmentToTrackListFragment()
     }
 
     override fun onCreateView(
