@@ -21,10 +21,3 @@ data class ExplicitContent(
     @SerializedName("filter_enabled") val filterEnabled: Boolean?,
     @SerializedName("filter_locked") val filterLocked: Boolean?
 )
-
-data class Followers(
-    @SerializedName("href")
-    val href: String?,
-    @SerializedName("total")
-    val total: Int?
-)

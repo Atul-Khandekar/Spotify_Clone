@@ -42,7 +42,7 @@ class HomeScreenViewModel @Inject constructor(
     private val _errorMessage = MutableStateFlow<String?>(null)
     val errorMessage: StateFlow<String?> get() = _errorMessage
 
-    fun getHomeScreenData() {
+    init {
         getFeaturedPlaylist()
         getAlbums()
         getUsersPlaylists()

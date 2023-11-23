@@ -28,6 +28,15 @@
         android:id="@+id/trackListFragment"
         android:name="com.example.spotifyclone.ui.TrackListFragment"
         android:label="fragment_track_list"
-        tools:layout="@layout/fragment_track_list"/>
+        tools:layout="@layout/fragment_track_list">
+
+        <argument
+            android:name="playlistId"
+            app:argType="string" />
+        <argument
+            android:name="type"
+            app:argType="com.example.spotifyclone.models.local.MediaItemType" />
+
+    </fragment>
 
 </navigation>

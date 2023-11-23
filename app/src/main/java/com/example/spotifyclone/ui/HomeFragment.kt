@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.spotifyclone.customadapters.HomePageAdapter
 import com.example.spotifyclone.databinding.FragmentHomeBinding
@@ -26,7 +27,8 @@ class HomeFragment : Fragment() {
     private val viewModel: HomeScreenViewModel by viewModels()
     private val rvAdapter = HomePageAdapter {
 
-        val destination = HomeFragmentDirections.actionHomeFragmentToTrackListFragment()
+        val destination = HomeFragmentDirections.actionHomeFragmentToTrackListFragment(it.id, it.type)
+        findNavController().navigate(destination)
     }
 
     override fun onCreateView(
@@ -44,11 +46,7 @@ class HomeFragment : Fragment() {
             setHasFixedSize(true)
             this.adapter = rvAdapter
         }
-        setUpHomeScreen()
-    }
 
-    private fun setUpHomeScreen() {
-        viewModel.getHomeScreenData()
     }
 
     private fun setUpObserver() {
