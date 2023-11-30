@@ -3,15 +3,15 @@ package com.example.spotifyclone.customadapters
 import androidx.recyclerview.widget.DiffUtil
 import com.example.spotifyclone.R
 import com.example.spotifyclone.base.BaseAdapter
-import com.example.spotifyclone.models.local.TrackListItem
+import com.example.spotifyclone.models.local.DisplaySongData
 
-class TrackListAdapter: BaseAdapter<TrackListItem>(TrackDiffUtil()) {
-    class TrackDiffUtil: DiffUtil.ItemCallback<TrackListItem>() {
-        override fun areItemsTheSame(oldItem: TrackListItem, newItem: TrackListItem): Boolean {
-            return oldItem.trackId == newItem.trackId
+class TrackListAdapter: BaseAdapter<DisplaySongData>(TrackDiffUtil()) {
+    class TrackDiffUtil: DiffUtil.ItemCallback<DisplaySongData>() {
+        override fun areItemsTheSame(oldItem: DisplaySongData, newItem: DisplaySongData): Boolean {
+            return oldItem.id== newItem.id
         }
 
-        override fun areContentsTheSame(oldItem: TrackListItem, newItem: TrackListItem): Boolean {
+        override fun areContentsTheSame(oldItem: DisplaySongData, newItem: DisplaySongData): Boolean {
            return oldItem ==  newItem
         }
 

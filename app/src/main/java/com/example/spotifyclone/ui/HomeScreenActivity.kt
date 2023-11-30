@@ -6,11 +6,9 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.commit
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.setupWithNavController
+import androidx.navigation.ui.NavigationUI
 import com.example.spotifyclone.R
 import com.example.spotifyclone.constants.AppConstants
 import com.example.spotifyclone.databinding.ActivityHomeScreenBinding
@@ -87,51 +85,17 @@ class HomeScreenActivity : AppCompatActivity() {
         finish()
     }
 
-    private fun loadFragment(fragment: Fragment) {
-        supportFragmentManager.commit {
-            onEnterAnimationComplete()
-            replace(R.id.nav_host_fragment, fragment)
-        }
-    }
-
     private fun setUpView() {
-
         binding = ActivityHomeScreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
     }
 
     private fun setUpBottomNavigation() {
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
-
         val bottomNavigationView = binding.bottomNavigation
-        bottomNavigationView.setupWithNavController(navController)
-
-        bottomNavigationView.setOnItemSelectedListener {
-            when (it.itemId) {
-
-                R.id.homeFragment -> {
-                    loadFragment(HomeFragment())
-                    true
-                }
-
-                R.id.searchFragment -> {
-                    loadFragment(SearchFragment())
-                    true
-                }
-
-                R.id.libraryFragment -> {
-                    loadFragment(LibraryFragment())
-                    true
-                }
-
-                else -> {
-                    false
-                }
-            }
-        }
+        NavigationUI.setupWithNavController(bottomNavigationView, navController)
     }
 
 }

@@ -10,9 +10,11 @@ import com.example.spotifyclone.interceptor.ApiAuthenticator
 import com.example.spotifyclone.interceptor.BasicAuthInterceptor
 import com.example.spotifyclone.repository.AuthRepository
 import com.example.spotifyclone.repository.HomeRepository
+import com.example.spotifyclone.repository.TrackListRepository
 import com.example.spotifyclone.service.AuthService
 import com.example.spotifyclone.service.CurrentUserService
 import com.example.spotifyclone.service.HomeService
+import com.example.spotifyclone.service.TrackListService
 import com.example.spotifyclone.utils.Prefs
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.Gson
@@ -48,7 +50,6 @@ object NetworkModule {
 
         return loggingInterceptor
     }
-
 
     @Provides
     @Singleton
@@ -110,6 +111,11 @@ object NetworkModule {
         HomeService::class.java
     )
 
+    @Singleton
+    @Provides
+    fun providesTrackListService(@Named(API_RETROFIT) retrofit: Retrofit): TrackListService =
+        retrofit.create(TrackListService::class.java)
+
     @Provides
     @Singleton
     fun providesAuthRepository(authService: AuthService): AuthRepository =
@@ -121,5 +127,11 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun providesHomeRepository(homeService: HomeService): HomeRepository = HomeRepository(homeService)
+    fun providesHomeRepository(homeService: HomeService): HomeRepository =
+        HomeRepository(homeService)
+
+    @Singleton
+    @Provides
+    fun providesTrackListRepository(trackListService: TrackListService): TrackListRepository =
+        TrackListRepository(trackListService)
 }

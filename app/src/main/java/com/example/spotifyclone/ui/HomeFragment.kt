@@ -10,6 +10,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.spotifyclone.customadapters.HomePageAdapter
@@ -25,10 +27,12 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private val viewModel: HomeScreenViewModel by viewModels()
-    private val rvAdapter = HomePageAdapter {
+    private lateinit var navHostFragment: NavHostFragment
+    private lateinit var navController: NavController
+    private lateinit var rvAdapter: HomePageAdapter
 
-        val destination = HomeFragmentDirections.actionHomeFragmentToTrackListFragment(it.id, it.type)
-        findNavController().navigate(destination)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
     }
 
     override fun onCreateView(
@@ -40,6 +44,13 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        rvAdapter = HomePageAdapter {
+
+            val destination =
+                HomeFragmentDirections.actionHomeFragmentToTrackListFragment(it.id, it.type)
+           findNavController().navigate(destination)
+        }
+
         setUpObserver()
         binding.parentRecyclerView.apply {
             layoutManager = LinearLayoutManager(view.context)
@@ -66,13 +77,13 @@ class HomeFragment : Fragment() {
                     }
 
                     viewModel.isLoading.collectLatest { isLoading ->
-                       isLoading?.also{
-                           if (it) {
-                               showLoading()
-                           } else {
-                               hideLoading()
-                           }
-                       }
+                        isLoading?.also {
+                            if (it) {
+                                showLoading()
+                            } else {
+                                hideLoading()
+                            }
+                        }
                     }
 
                 }

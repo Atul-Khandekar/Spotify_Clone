@@ -6,7 +6,7 @@
 
         <variable
             name="item"
-            type="com.example.spotifyclone.models.local.TrackListItem" />
+            type="com.example.spotifyclone.models.local.DisplaySongData" />
 
     </data>
 
@@ -23,7 +23,7 @@
             android:src="@color/item_background_orange"
             app:layout_constraintDimensionRatio="1,1"
             app:layout_constraintStart_toStartOf="parent"
-            imageFromUrl="@{item.trackImage}"
+            imageFromUrl="@{item.image}"
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.textview.MaterialTextView
@@ -31,7 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dp_10"
-            android:text="@{item.trackName}"
+            android:text="@{item.songName}"
             android:textColor="@color/primary_white"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="@id/track_more"
@@ -44,7 +44,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingTop="@dimen/dp_2"
-            android:text="@{item.trackArtist}"
+            android:text="@{item.artistsName}"
             android:textSize="@dimen/text_size_13"
             android:textColor="@color/primary_light_grey"
             app:layout_constraintStart_toStartOf="@id/track_name"
