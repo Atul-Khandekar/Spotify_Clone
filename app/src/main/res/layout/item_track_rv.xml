@@ -28,34 +28,43 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/track_name"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dp_10"
             android:text="@{item.songName}"
             android:textColor="@color/primary_white"
             android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="@id/track_more"
+            android:maxLines="1"
+            android:scrollHorizontally="true"
+            android:ellipsize="end"
+            app:layout_constraintEnd_toStartOf="@id/track_more"
             app:layout_constraintHorizontal_bias="0"
             app:layout_constraintStart_toEndOf="@id/track_image"
             app:layout_constraintTop_toTopOf="@id/track_image" />
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/track_artist"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:paddingTop="@dimen/dp_2"
             android:text="@{item.artistsName}"
             android:textSize="@dimen/text_size_13"
+            android:maxLines="1"
+            android:scrollHorizontally="true"
+            android:ellipsize="end"
             android:textColor="@color/primary_light_grey"
+            app:layout_constraintVertical_bias="0"
+            app:layout_constraintEnd_toEndOf="@id/track_name"
             app:layout_constraintStart_toStartOf="@id/track_name"
-            app:layout_constraintTop_toBottomOf="@id/track_name" />
+            app:layout_constraintTop_toBottomOf="@id/track_name"
+            />
 
         <ImageButton
             android:id="@+id/track_more"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
-            android:padding="@dimen/dp_8"
+            android:padding="@dimen/dp_10"
             android:src="@drawable/ic_more"
             app:layout_constraintBottom_toBottomOf="@id/track_image"
             app:layout_constraintEnd_toEndOf="parent"

@@ -29,7 +29,7 @@ data class AlbumItem(
     @SerializedName("album_type")
     val albumType: String?,
     @SerializedName("artists")
-    val artists: List<Artist>?,
+    val artists: List<Artists>?,
     @SerializedName("available_markets")
     val availableMarkets: List<String>?,
     @SerializedName("external_urls")
@@ -56,7 +56,7 @@ data class AlbumItem(
     val uri: String?
 )
 
-data class Artist(
+data class Artists(
     @SerializedName("external_urls")
     val externalUrls: ExternalUrls?,
     @SerializedName("href")

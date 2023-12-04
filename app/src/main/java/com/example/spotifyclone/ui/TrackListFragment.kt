@@ -13,7 +13,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.spotifyclone.R
 import com.example.spotifyclone.bindings.imageFromUrl
 import com.example.spotifyclone.customadapters.TrackListAdapter
 import com.example.spotifyclone.databinding.FragmentTrackListBinding
@@ -60,8 +59,7 @@ class TrackListFragment : Fragment() {
                         trackListAdapter.submitList(it.dataList)
                         binding.apply {
                             playlistCoverImage.imageFromUrl(it.images)
-                            trackListToolbar.title = it.name
-                            trackListToolbar.setTitleTextColor(R.color.white)
+                            collapsingLayout.title = it.name
                         }
                     }
                 }
