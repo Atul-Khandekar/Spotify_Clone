@@ -1,6 +1,5 @@
 package com.example.spotifyclone.ui
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.spotifyclone.bindings.imageFromUrl
@@ -41,6 +41,7 @@ class TrackListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUpView()
+        setUpClickListeners()
         setUpObservers()
         binding.trackRv.apply {
             layoutManager = LinearLayoutManager(requireContext())
@@ -49,7 +50,12 @@ class TrackListFragment : Fragment() {
         }
     }
 
-    @SuppressLint("ResourceAsColor")
+    private fun setUpClickListeners() {
+        binding.trackListToolbar.setNavigationOnClickListener {
+            findNavController().navigateUp()
+        }
+    }
+
     private fun setUpObservers() {
 
         viewLifecycleOwner.lifecycleScope.launch {

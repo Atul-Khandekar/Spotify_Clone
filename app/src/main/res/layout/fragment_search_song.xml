@@ -20,6 +20,8 @@
         android:drawableStart="@drawable/ic_navigate_back"
         android:drawablePadding="@dimen/padding_18"
         android:padding="@dimen/padding_18"
+        android:textColor="@color/primary_white"
+        android:textSize="@dimen/sp_18"
         android:textColorHint="@color/primary_light_grey"
         android:textStyle="bold|normal"/>
 

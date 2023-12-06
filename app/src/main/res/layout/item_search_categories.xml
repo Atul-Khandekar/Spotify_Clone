@@ -1,59 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-<com.google.android.material.card.MaterialCardView android:id="@+id/category_card_view"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginEnd="@dimen/margin_start_end_10"
-    android:layout_marginBottom="16dp"
-    xmlns:tools="http://schemas.android.com/tools">
+    <data>
 
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:background="@color/item_background_orange"
-   >
+        <variable
+            name="item"
+            type="com.example.spotifyclone.models.remote.CategoryItem" />
+    </data>
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/category_title"
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/category_card_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/category_title"
-        android:textSize="@dimen/search_field_text_size_16"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/category_image"
-        android:layout_marginEnd="85dp"
-        app:layout_goneMarginTop="16dp"
-        android:layout_marginStart="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.15"
-        app:layout_constraintVertical_bias="0.1"
-        android:layout_marginTop="@dimen/margin_top_22"
-        android:textColor="@android:color/white"
-        android:textStyle="bold"/>
+        android:layout_margin="@dimen/dp_7.5"
+        >
 
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/category_image"
-        android:layout_width="68dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="28dp"
-        android:background="@color/white"
-        android:rotation="20"
-        android:padding="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintDimensionRatio="1,1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1"
-        app:layout_constraintWidth_percent="0.2"
-        app:layout_constraintHorizontal_bias="1"
-        android:layout_marginStart="132dp"
-        android:layout_marginBottom="-5dp"
-        android:layout_marginEnd="-24dp"
-        />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/category_constraint_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/item_background_orange">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
-</com.google.android.material.card.MaterialCardView>
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/category_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="@dimen/margin_top_22"
+                android:layout_marginEnd="85dp"
+                android:text="@{item.name}"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/search_field_text_size_16"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/category_image"
+                app:layout_constraintHorizontal_bias="0.15"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.1"
+                app:layout_goneMarginTop="16dp" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/category_image"
+                imageFromUrl="@{item.icons[0].url}"
+                android:layout_width="@dimen/dp_68"
+                android:layout_height="@dimen/dp_0"
+                android:layout_marginStart="@dimen/dp_132"
+                android:layout_marginTop="@dimen/dp_28"
+                android:layout_marginEnd="@dimen/minus_dp_24"
+                android:layout_marginBottom="@dimen/minus_dp_5"
+                android:background="@color/white"
+                android:padding="@dimen/padding_8"
+                android:rotation="20"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1,1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1"
+                app:layout_constraintWidth_percent="0.2" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>

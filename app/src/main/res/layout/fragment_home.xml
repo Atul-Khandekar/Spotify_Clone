@@ -16,7 +16,7 @@
         tools:context=".ui.HomeFragment">
 
         <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/action_bar_home_activity"
+            android:id="@+id/tool_bar_home_fragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
@@ -49,7 +49,7 @@
             android:layout_height="0dp"
             app:layout_constrainedHeight="true"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/action_bar_home_activity"
+            app:layout_constraintTop_toBottomOf="@id/tool_bar_home_fragment"
             tools:itemCount="2"
             tools:listitem="@layout/item_home_screen" />
 
@@ -60,7 +60,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/action_bar_home_activity"
+            app:layout_constraintTop_toBottomOf="@id/tool_bar_home_fragment"
             app:trackColor="@color/primary_green"
             android:visibility="gone"
             />

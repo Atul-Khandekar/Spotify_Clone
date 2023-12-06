@@ -5,16 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.spotifyclone.databinding.FragmentSearchSongBinding
+import com.example.spotifyclone.extensions.onLeftDrawableClicked
 
 class SearchSongFragment : Fragment() {
 
     private var _binding: FragmentSearchSongBinding? = null
     private val binding get() = _binding!!
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,8 +24,17 @@ class SearchSongFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        setUpClickListeners()
     }
+
+    private fun setUpClickListeners() {
+        binding.apply {
+                searchView.onLeftDrawableClicked {
+                    findNavController().navigateUp()
+                }
+        }
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
