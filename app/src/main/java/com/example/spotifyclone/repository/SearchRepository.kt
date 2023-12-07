@@ -18,4 +18,12 @@ class SearchRepository @Inject constructor(private val searchService: SearchServ
             emit(response)
         }
     }.flowOn(Dispatchers.IO)
+
+    suspend fun searchForItem(query: Map<String, Any>) = flow {
+        emit(BaseResponse.Loading())
+        searchService.searchForItem(query).let {
+            val response = handleResponse(it)
+            emit(response)
+        }
+    }.flowOn(Dispatchers.IO)
 }

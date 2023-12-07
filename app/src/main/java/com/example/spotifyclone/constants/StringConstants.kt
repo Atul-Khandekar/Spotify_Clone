@@ -18,4 +18,5 @@ object StringConstants {
 
     const val ALBUM = "Album"
     const val PLAYLIST = "Playlist"
+    const val SONG = "Song"
 }

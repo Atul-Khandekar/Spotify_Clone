@@ -86,6 +86,8 @@ class TrackListFragment : Fragment() {
 
             is MediaItemType.Album -> {
 
+            } else -> {
+
             }
         }
     }

@@ -10,7 +10,7 @@ data class Track(
     @SerializedName("album")
     val album: AlbumItem?,
     @SerializedName("artists")
-    val artists: List<ArtistX>?,
+    val artists: List<Artists>?,
     @SerializedName("available_markets")
     val availableMarkets: List<String>?,
     @SerializedName("disc_number")

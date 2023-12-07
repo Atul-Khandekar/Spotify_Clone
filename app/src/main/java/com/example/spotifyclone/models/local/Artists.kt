@@ -6,7 +6,7 @@ import com.example.spotifyclone.models.remote.Followers
 import com.example.spotifyclone.models.remote.Image
 import com.google.gson.annotations.SerializedName
 
-data class ArtistX(
+data class Artists(
     @SerializedName("external_urls")
     val externalUrls: ExternalUrls?,
     @SerializedName("followers")

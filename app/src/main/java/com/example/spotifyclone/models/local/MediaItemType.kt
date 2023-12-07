@@ -11,4 +11,6 @@ sealed class MediaItemType: Parcelable {
 
     data class Playlist(val value: String = StringConstants.PLAYLIST) : MediaItemType()
 
+    data class Track(val value: String = StringConstants.SONG): MediaItemType()
+
 }
