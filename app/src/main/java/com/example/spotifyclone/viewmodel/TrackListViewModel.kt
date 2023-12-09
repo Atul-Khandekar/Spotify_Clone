@@ -40,6 +40,7 @@ class TrackListViewModel @Inject constructor(private val trackListRepository: Tr
                             val songData = songs.tracks?.items?.map { item ->
                                 val artists =
                                     item.track?.artists?.joinToString(", ") { it.name.toString() }
+
                                 DisplaySongData(
                                     item.track?.name,
                                     artists,
@@ -50,7 +51,7 @@ class TrackListViewModel @Inject constructor(private val trackListRepository: Tr
                                 )
                             }
 
-                            songData.let { songData ->
+                            songData.let {
                                 _isLoading.emit(false)
                                 _tracks.emit(
                                     DisplaySong(
@@ -58,13 +59,12 @@ class TrackListViewModel @Inject constructor(private val trackListRepository: Tr
                                         songs.images?.firstOrNull()?.url,
                                         songs.name,
                                         songs.owner?.displayName,
-                                        songData
+                                        it
                                     )
                                 )
                             }
 
                         }
-
                     }
 
                     is BaseResponse.Error -> {

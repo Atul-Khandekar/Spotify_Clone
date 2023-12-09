@@ -35,7 +35,14 @@
         android:id="@+id/libraryFragment"
         android:name="com.example.spotifyclone.ui.LibraryFragment"
         android:label="fragment_library"
-        tools:layout="@layout/fragment_library" />
+        tools:layout="@layout/fragment_library">
+        <action
+            android:id="@+id/action_libraryFragment_to_trackListFragment"
+            app:destination="@id/trackListFragment"
+            app:popUpTo="@id/libraryFragment"
+            app:popUpToSaveState="true"
+            />
+    </fragment>
     <fragment
         android:id="@+id/trackListFragment"
         android:name="com.example.spotifyclone.ui.TrackListFragment"

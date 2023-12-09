@@ -1,95 +1,140 @@
 package com.example.spotifyclone.ui
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.spotifyclone.constants.ImageConstants
-import com.example.spotifyclone.constants.StringConstants
-import com.example.spotifyclone.customadapters.PlaylistAdapter
+import com.example.spotifyclone.customadapters.LibraryAdapter
 import com.example.spotifyclone.databinding.FragmentLibraryBinding
-import com.example.spotifyclone.models.local.PlayListModel
-import java.util.UUID
+import com.example.spotifyclone.listeners.ItemClickListener
+import com.example.spotifyclone.models.local.LibraryItem
+import com.example.spotifyclone.viewmodel.UserLibraryViewModel
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class LibraryFragment : Fragment() {
 
     private var _binding: FragmentLibraryBinding? = null
     private val binding get() = _binding!!
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+    private val viewModel: UserLibraryViewModel by viewModels()
+    private val libraryAdapter = LibraryAdapter()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setUpUI()
+        setUpObservers()
+        setUpClickListeners()
+    }
 
-        val adapter = PlaylistAdapter()
-        adapter.submitList(
-            listOf(
-                PlayListModel(
-                    UUID.randomUUID(),
-                    ImageConstants.INDIE_KID_ROOM_VIBES_COVER,
-                    StringConstants.INDIE_KID_ROOM_VIBES_COVER,
-                    "45"
-                ), PlayListModel(
-                    UUID.randomUUID(),
-                    ImageConstants.GALAXY_ROOM_VIBES,
-                    StringConstants.GALAXY_ROOM_VIBES,
-                    "10"
-                ), PlayListModel(
-                    UUID.randomUUID(),
-                    ImageConstants.COTTAGECORE_ROOM_VIBES,
-                    StringConstants.COTTAGECORE_ROOM_VIBES,
-                    "5"
-                ), PlayListModel(
-                    UUID.randomUUID(),
-                    ImageConstants.DARK_ACADEMIA_ROOM_VIBER,
-                    StringConstants.DARK_ACADEMIA_ROOM_VIBER,
-                    "13"
-                ), PlayListModel(
-                    UUID.randomUUID(),
-                    ImageConstants.INDIE_KID_ROOM_VIBES_COVER,
-                    StringConstants.INDIE_KID_ROOM_VIBES_COVER,
-                    "12"
-                ), PlayListModel(
-                    UUID.randomUUID(),
-                    ImageConstants.E_GIRL_ROOM_VIBERS,
-                    StringConstants.E_GIRL_ROOM_VIBERS,
-                    "8"
-                ), PlayListModel(
-                    UUID.randomUUID(),
-                    ImageConstants.ART_HOE_ROOM_VIBES,
-                    StringConstants.ART_HOE_ROOM_VIBES,
-                    "17"
-                ), PlayListModel(
-                    UUID.randomUUID(),
-                    ImageConstants.WATCHCORE_ROOM_VIBES,
-                    StringConstants.WATCHCORE_ROOM_VIBES,
-                    "23"
-                ), PlayListModel(
-                    UUID.randomUUID(),
-                    ImageConstants.SOFT_GIRL_ROOM_VIBES,
-                    StringConstants.SOFT_GIRL_ROOM_VIBES,
-                    "19"
-                ), PlayListModel(
-                    UUID.randomUUID(),
-                    ImageConstants.GRUNGE_ROOM_VIBES,
-                    StringConstants.GRUNGE_ROOM_VIBES,
-                    "11"
-                ), PlayListModel(
-                    UUID.randomUUID(),
-                    ImageConstants.VINTAGE_ROOM_VIBES,
-                    StringConstants.VINTAGE_ROOM_VIBES,
-                    "10"
-                )
-            )
-        )
+    private fun setUpObservers() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.CREATED) {
+                viewModel.libraryItem.collectLatest {
+                    libraryAdapter.submitList(it)
+                }
 
+                viewModel.errorMessage.collectLatest {
+                    it?.also {
+                        Toast.makeText(requireContext(), it, Toast.LENGTH_LONG).show()
+                    }
+                }
+            }
+        }
+    }
+
+    private fun setUpUI() {
         binding.playlistRecyclerView.apply {
-            this.adapter = adapter
-            layoutManager = LinearLayoutManager(view.context)
+            this.adapter = libraryAdapter
+            layoutManager = LinearLayoutManager(requireContext())
             setHasFixedSize(true)
+        }
+
+    }
+
+    private fun handleArtistState() {
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            binding.apply {
+                if (chipArtists.isSelected) {
+                    btnClose.visibility = View.VISIBLE
+                    chipPlaylist.visibility = View.GONE
+                    viewModel.artistChecked()
+                } else {
+                    chipPlaylist.visibility = View.VISIBLE
+                    btnClose.visibility = View.GONE
+                    viewModel.uncheckedList()
+                }
+            }
+        }
+
+    }
+
+    private fun handlePlaylistState() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            binding.apply {
+                if (chipPlaylist.isSelected) {
+                    btnClose.visibility = View.VISIBLE
+                    chipArtists.visibility = View.GONE
+                    viewModel.playlistChecked()
+
+                } else {
+                    chipArtists.visibility = View.VISIBLE
+                    btnClose.visibility = View.GONE
+                    viewModel.uncheckedList()
+                }
+            }
+        }
+
+    }
+
+    private fun setUpClickListeners() {
+        binding.apply {
+
+            chipPlaylist.setOnClickListener {
+                chipPlaylist.isSelected = !chipPlaylist.isSelected
+                handlePlaylistState()
+            }
+
+            chipArtists.setOnClickListener {
+                chipArtists.isSelected = !chipArtists.isSelected
+                handleArtistState()
+            }
+
+            btnClose.setOnClickListener {
+                btnClose.isSelected = !btnClose.isSelected
+                chipPlaylist.isSelected = false
+                chipArtists.isSelected = false
+                if (btnClose.isSelected) {
+                    btnClose.visibility = View.GONE
+                }
+                handleArtistState()
+                handlePlaylistState()
+            }
+
+            libraryAdapter.apply {
+                itemClickListener = object : ItemClickListener<LibraryItem> {
+                    override fun onItemClick(item: LibraryItem, position: Int) {
+                        item.id?.also {
+                            val destination =
+                                LibraryFragmentDirections.actionLibraryFragmentToTrackListFragment(
+                                    item.id, item.type
+                                )
+                            findNavController().navigate(destination)
+                        }
+                    }
+
+                }
+            }
         }
     }
 

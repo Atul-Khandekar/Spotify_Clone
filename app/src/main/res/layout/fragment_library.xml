@@ -12,11 +12,11 @@
         style="@style/navigation_top_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_26"
         android:background="@android:color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="@dimen/margin_26"
         app:menu="@menu/menu_your_library">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -44,42 +44,43 @@
                 app:layout_constraintTop_toTopOf="@id/profile_button_library" />
 
             <ImageButton
-                android:id="@+id/close"
-                android:layout_width="36dp"
-                android:layout_height="0dp"
-                android:layout_marginTop="@dimen/margin_top_22"
-                android:background="@drawable/round_button"
+                android:id="@+id/btn_close"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_profile_button"
                 android:backgroundTint="@color/primary_grey"
-                android:padding="8dp"
-                android:scaleType="fitXY"
+                android:padding="@dimen/dp_0"
                 android:src="@drawable/ic_close"
-                app:layout_constraintDimensionRatio="1,1"
-                app:layout_constraintStart_toStartOf="@id/profile_button_library"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:visibility="gone"
                 app:layout_constraintTop_toBottomOf="@id/profile_button_library" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/chip_playlists"
-                style="@style/chip_button"
+                android:id="@+id/chip_playlist"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_14"
-                android:background="@drawable/selector_chip_button"
-                android:text="@string/playlists"
-                app:layout_constraintBottom_toBottomOf="@id/close"
-                app:layout_constraintStart_toEndOf="@id/close"
-                app:layout_constraintTop_toTopOf="@id/close" />
+                android:layout_marginStart="@dimen/dp_10"
+                android:backgroundTint="@drawable/selector_chip_button"
+                android:text="@string/playlist"
+                android:textAllCaps="false"
+                app:cornerRadius="@dimen/dp_200"
+                app:layout_constraintBottom_toBottomOf="@id/btn_close"
+                app:layout_constraintStart_toEndOf="@id/btn_close"
+                app:layout_constraintTop_toTopOf="@id/btn_close" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/chip_artists"
-                style="@style/chip_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_14"
-                android:background="@drawable/selector_chip_button"
+                android:layout_marginStart="@dimen/dp_10"
+                android:backgroundTint="@drawable/selector_chip_button"
                 android:text="@string/artists"
-                app:layout_constraintBottom_toBottomOf="@id/chip_playlists"
-                app:layout_constraintStart_toEndOf="@id/chip_playlists"
-                app:layout_constraintTop_toTopOf="@id/chip_playlists" />
+                android:textAllCaps="false"
+                app:cornerRadius="@dimen/dp_200"
+                app:layout_constraintBottom_toBottomOf="@id/chip_playlist"
+                app:layout_constraintStart_toEndOf="@id/chip_playlist"
+                app:layout_constraintTop_toTopOf="@id/chip_playlist" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -89,13 +90,12 @@
         android:id="@+id/playlist_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:padding="@dimen/button_padding_top_bottom_13"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/your_library_tool_bar"
-        tools:listitem="@layout/item_your_library"
         tools:itemCount="7"
-        android:padding="@dimen/button_padding_top_bottom_13"
-        />
+        tools:listitem="@layout/item_your_library" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

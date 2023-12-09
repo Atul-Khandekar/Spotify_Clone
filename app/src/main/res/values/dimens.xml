@@ -53,6 +53,7 @@
     <dimen name="sp_24">24sp</dimen>
     <dimen name="sp_18">18sp</dimen>
     <dimen name="sp_12">12sp</dimen>
+    <dimen name="sp_14">14sp</dimen>
 
     <dimen name="dp_250">320dp</dimen>
     <dimen name="dp_7.5">7.5dp</dimen>
@@ -62,9 +63,7 @@
     <dimen name="dp_132">132dp</dimen>
     <dimen name="minus_dp_24">-24dp</dimen>
     <dimen name="minus_dp_5">-5dp</dimen>
-
-
-
+    <dimen name="dp_40">40dp</dimen>
 
 
 </resources>

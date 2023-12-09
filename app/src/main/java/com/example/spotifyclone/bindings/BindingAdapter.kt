@@ -25,5 +25,8 @@ fun TextView.setType(type: MediaItemType) {
         is MediaItemType.Track -> {
             MediaItemType.Track().value
         }
+        is MediaItemType.Artist -> {
+            MediaItemType.Artist().value
+        }
     }
 }

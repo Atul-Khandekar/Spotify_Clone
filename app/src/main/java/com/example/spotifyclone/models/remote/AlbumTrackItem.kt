@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class AlbumTrackItem(
 
-    @SerializedName("artists") var artists: List<Artists>,
+    @SerializedName("artists") var artists: List<Artistsx>,
     @SerializedName("available_markets") var availableMarkets: List<String>,
     @SerializedName("disc_number") var discNumber: Int,
     @SerializedName("duration_ms") var durationMs: Int,
