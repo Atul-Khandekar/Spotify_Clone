@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="item"
+            type="com.example.spotifyclone.models.local.RecentlyPlayedTrack" />
+
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/bottom_parent_card_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        app:cardBackgroundColor="@color/primary_black"
+        app:cardCornerRadius="@dimen/dp_10">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/now_playing_image"
+                android:layout_width="52dp"
+                android:layout_height="0dp"
+                android:layout_margin="@dimen/dp_10"
+                android:background="@drawable/shape_imgae_background"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1,1"
+                app:layout_constraintEnd_toStartOf="@id/now_playing_title"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                imageFromUrl="@{item.image}"
+                />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/now_playing_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_10"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@{item.title}"
+                android:textColor="@color/primary_white"
+                android:textSize="@dimen/sp_18"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/now_playing_image"
+                app:layout_constraintEnd_toStartOf="@id/btn_play"
+                app:layout_constraintStart_toEndOf="@id/now_playing_image"
+                app:layout_constraintTop_toTopOf="@id/now_playing_image"
+                app:layout_constraintVertical_bias="0" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@{item.artists}"
+                android:textColor="@color/primary_light_grey"
+                android:textSize="@dimen/sp_14"
+                app:layout_constraintEnd_toStartOf="@id/btn_play"
+                app:layout_constraintStart_toStartOf="@id/now_playing_title"
+                app:layout_constraintTop_toBottomOf="@id/now_playing_title" />
+
+            <ImageButton
+                android:id="@+id/btn_pause"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dp_7.5"
+                android:background="@android:color/transparent"
+                android:padding="@dimen/dp_8"
+                android:src="@drawable/ic_pause"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/btn_play"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dp_7.5"
+                android:background="@android:color/transparent"
+                android:padding="@dimen/dp_8"
+                android:src="@drawable/ic_play"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/btn_pause"
+                app:layout_constraintStart_toEndOf="@id/now_playing_title"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

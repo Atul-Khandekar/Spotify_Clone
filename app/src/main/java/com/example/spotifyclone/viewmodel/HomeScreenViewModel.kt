@@ -3,16 +3,13 @@ package com.example.spotifyclone.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.spotifyclone.base.BaseResponse
-import com.example.spotifyclone.constants.AppConstants
 import com.example.spotifyclone.constants.ImageConstants
 import com.example.spotifyclone.constants.StringConstants
 import com.example.spotifyclone.models.local.HomePageData
 import com.example.spotifyclone.models.local.HomePageItemData
 import com.example.spotifyclone.models.local.MediaItemType
-import com.example.spotifyclone.repository.CurrentUserRepository
 import com.example.spotifyclone.repository.HomeRepository
 import com.example.spotifyclone.utils.Prefs
-import com.example.spotifyclone.utils.PrefsKeys
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -23,15 +20,8 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeScreenViewModel @Inject constructor(
     val prefs: Prefs,
-    private val currentUserRepository: CurrentUserRepository,
     private val homeRepository: HomeRepository
 ) : ViewModel() {
-
-    private val _profileFetched = MutableStateFlow(false)
-    val profileFetched: StateFlow<Boolean> get() = _profileFetched
-
-    private val _profileFetchingError = MutableStateFlow<String?>(null)
-    val profileFetchingError: StateFlow<String?> get() = _profileFetchingError
 
     private val _isLoading = MutableStateFlow<Boolean?>(null)
     val isLoading: StateFlow<Boolean?> get() = _isLoading
@@ -46,46 +36,6 @@ class HomeScreenViewModel @Inject constructor(
         getFeaturedPlaylist()
         getAlbums()
         getUsersPlaylists()
-    }
-
-    fun getLoginStatus(handler: (Boolean) -> Unit) {
-        prefs.getString(PrefsKeys.ACCESS_TOKEN, "").apply {
-            handler(this.isNotEmpty())
-        }
-    }
-
-    fun getCurrentUserProfile() {
-        viewModelScope.launch {
-            currentUserRepository.getCurrentUserProfile().collectLatest { response ->
-                when (response) {
-                    is BaseResponse.Loading -> {
-
-                    }
-
-                    is BaseResponse.Success -> {
-                        response.data?.also { currentUserProfile ->
-
-                            currentUserProfile.id?.also {
-                                _profileFetched.emit(true)
-                                prefs.putString(AppConstants.USER_ID, it)
-
-                            }
-
-                            currentUserProfile.displayName?.also {
-                                prefs.putString(AppConstants.USER_NAME, it)
-
-                            }
-                        }
-
-                    }
-
-                    is BaseResponse.Error -> {
-                        _profileFetched.emit(false)
-                        _profileFetchingError.emit(response.msg)
-                    }
-                }
-            }
-        }
     }
 
     private fun getFeaturedPlaylist() {

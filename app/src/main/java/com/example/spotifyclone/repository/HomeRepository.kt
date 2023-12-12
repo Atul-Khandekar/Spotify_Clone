@@ -20,7 +20,7 @@ class HomeRepository @Inject constructor(private val homeService: HomeService) :
         emit(handleResponse(homeService.getAlbums()))
     }.flowOn(Dispatchers.IO)
 
-    suspend fun getUsersPlaylists() = flow  {
+    suspend fun getUsersPlaylists() = flow {
         emit(BaseResponse.Loading())
         emit(handleResponse(homeService.getUsersPlaylists()))
     }.flowOn(Dispatchers.IO)
@@ -28,6 +28,14 @@ class HomeRepository @Inject constructor(private val homeService: HomeService) :
     suspend fun getFollowedArtists(map: Map<String, Any>) = flow {
         emit(BaseResponse.Loading())
         homeService.getFollowedArtists(map).also {
+            val result = handleResponse(it)
+            emit(result)
+        }
+    }.flowOn(Dispatchers.IO)
+
+    suspend fun getRecentlyPlayedTrack() = flow {
+        emit(BaseResponse.Loading())
+        homeService.getRecentlyPlayedTrack().also {
             val result = handleResponse(it)
             emit(result)
         }

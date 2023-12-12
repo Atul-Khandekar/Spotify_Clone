@@ -5,6 +5,7 @@ import com.example.spotifyclone.models.remote.ArtistResponse
 import com.example.spotifyclone.models.remote.FeaturedPlaylistsResponseModel
 import com.example.spotifyclone.models.remote.PlaylistItem
 import com.example.spotifyclone.models.remote.ResponseItem
+import com.example.spotifyclone.models.remote.ResponseRecentTrack
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.QueryMap
@@ -12,7 +13,7 @@ import retrofit2.http.QueryMap
 interface HomeService {
 
     @GET("browse/featured-playlists")
-    suspend fun getFeaturedPlaylists() : Response<FeaturedPlaylistsResponseModel>
+    suspend fun getFeaturedPlaylists(): Response<FeaturedPlaylistsResponseModel>
 
     @GET("browse/new-releases")
     suspend fun getAlbums(): Response<AlbumsResponseModel>
@@ -23,4 +24,7 @@ interface HomeService {
     @GET("me/following")
     @JvmSuppressWildcards
     suspend fun getFollowedArtists(@QueryMap map: Map<String, Any>): Response<ArtistResponse>
+
+    @GET("me/player/recently-played")
+    suspend fun getRecentlyPlayedTrack(): Response<ResponseRecentTrack>
 }

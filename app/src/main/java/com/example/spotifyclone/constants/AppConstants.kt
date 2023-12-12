@@ -24,6 +24,7 @@ object AppConstants {
     const val API_RETROFIT = "API_RETROFIT"
     const val NETWORK_TIMEOUT: Long = 60
     const val DEBOUNCE_INTERVAL: Long = 500
+    const val BOTTOM_OFFSET: Int = 100
 
     const val USER_ID = "user_id"
     const val USER_NAME = "user_name"

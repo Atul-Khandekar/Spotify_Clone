@@ -12,8 +12,10 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.spotifyclone.constants.AppConstants
 import com.example.spotifyclone.customadapters.HomePageAdapter
 import com.example.spotifyclone.databinding.FragmentHomeBinding
+import com.example.spotifyclone.decorations.BottomOffSetDecoration
 import com.example.spotifyclone.viewmodel.HomeScreenViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -27,10 +29,6 @@ class HomeFragment : Fragment() {
     private val viewModel: HomeScreenViewModel by viewModels()
     private lateinit var rvAdapter: HomePageAdapter
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
@@ -40,20 +38,25 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setUpView()
+        setUpObserver()
+    }
+
+    private fun setUpView() {
         rvAdapter = HomePageAdapter {
 
             val destination =
                 HomeFragmentDirections.actionHomeFragmentToTrackListFragment(it.id, it.type)
-           findNavController().navigate(destination)
+            findNavController().navigate(destination)
         }
 
-        setUpObserver()
+        val bottomOffSetDecoration = BottomOffSetDecoration(AppConstants.BOTTOM_OFFSET)
         binding.parentRecyclerView.apply {
-            layoutManager = LinearLayoutManager(view.context)
+            layoutManager = LinearLayoutManager(requireContext())
             setHasFixedSize(true)
             this.adapter = rvAdapter
+            addItemDecoration(bottomOffSetDecoration)
         }
-
     }
 
     private fun setUpObserver() {
@@ -63,7 +66,6 @@ class HomeFragment : Fragment() {
                 launch {
                     viewModel.homePageList.collectLatest {
                         rvAdapter.submitList(it)
-
                     }
 
                     viewModel.errorMessage.collectLatest {
