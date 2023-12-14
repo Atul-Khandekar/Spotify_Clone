@@ -51,4 +51,8 @@
     <string name="add_library_title">Add Library</string>
     <string name="track_name">Track Name </string>
     <string name="playlist_id">playlistId</string>
+    <string name="playing_from_playlist">PLAYING FROM PLAYLIST</string>
+    <string name="more">More</string>
+    <string name="initial_value">0:00</string>
+    <string name="final_value">0:30</string>
 </resources>

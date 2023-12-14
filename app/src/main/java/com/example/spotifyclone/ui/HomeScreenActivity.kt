@@ -40,6 +40,14 @@ class HomeScreenActivity : AppCompatActivity() {
         setUpView()
         setUpBottomNavigation()
         getUserProfile()
+        setUpClickListeners()
+    }
+
+    private fun setUpClickListeners() {
+        binding.bottomNowPlaying.bottomParentCardView.setOnClickListener {
+            val modalSheet = NowPlayingFragment()
+            modalSheet.show(supportFragmentManager, NowPlayingFragment.TAG)
+        }
     }
 
     private fun setUpObservers() {

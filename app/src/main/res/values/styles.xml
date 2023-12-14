@@ -98,4 +98,28 @@
 
     </style>
 
+    <style name="now_playing_title">
+        <item name="android:textColor">@color/primary_white</item>
+        <item name="textAllCaps">true</item>
+        <item name="android:textSize">@dimen/sp_12</item>
+    </style>
+    <style name="now_playing_sub_title">
+        <item name="android:textColor">@color/primary_white</item>
+        <item name="textAllCaps">true</item>
+        <item name="android:textSize">@dimen/sp_11</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="custom_slider">
+        <item name="trackColorInactive">@color/primary_light_grey</item>
+        <item name="trackColorActive">@color/white</item>
+        <item name="thumbColor">@color/white</item>
+        <item name="trackHeight">@dimen/dp_4</item>
+    </style>
+
+    <style name="slider_value">
+        <item name="android:textColor">@color/primary_light_grey</item>
+        <item name="android:textSize">@dimen/sp_14</item>
+        <item name="android:textStyle">bold</item>
+    </style>
 </resources>
